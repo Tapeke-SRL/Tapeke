@@ -26,7 +26,7 @@ class Paso2 extends React.Component {
                         <SView col={"xs-12"} center>
                             <SText color={STheme.color.text} fontSize={21} style={{ fontWeight: "bold" }} center >Seleccione el menú de favoritos</SText>
                             <SHr height={15} />
-                            <SText color={STheme.color.gray} fontSize={13} center height={45}>Ahora come bien, no salgas de casa, puedes elegir tu comida favorita solo con un Click.</SText>
+                            <SText color={STheme.color.gray} fontSize={13} center >Ahora come bien, no salgas de casa, puedes elegir tu comida favorita solo con un Click.</SText>
                         </SView>
                     </SView>
                     <SHr height={60} />

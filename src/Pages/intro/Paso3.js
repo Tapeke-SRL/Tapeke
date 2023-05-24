@@ -27,7 +27,7 @@ class Paso3 extends React.Component {
                         <SView col={"xs-12"} center>
                             <SText color={STheme.color.text} fontSize={21} style={{ fontWeight: "bold" }} center >Buena comida a un precio barato</SText>
                             <SHr height={15} />
-                            <SText color={STheme.color.gray} fontSize={13} center height={45}>Puedes comer en restaurantes caros con precios muy accesibles.</SText>
+                            <SText color={STheme.color.gray} fontSize={13} center >Puedes comer en restaurantes caros con precios muy accesibles.</SText>
                         </SView>
                     </SView>
                     <SHr height={60} />

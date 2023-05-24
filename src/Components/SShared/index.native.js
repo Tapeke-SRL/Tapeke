@@ -4,6 +4,7 @@ import Share from 'react-native-share';
 import RNFetchBlob from 'react-native-fetch-blob';
 import RNFS from 'react-native-fs';
 import CameraRoll from "@react-native-community/cameraroll";
+import { SUuid } from 'servisofts-component';
 export default class SShared extends Component {
 
     static async hasAndroidPermission() {
@@ -38,7 +39,7 @@ export default class SShared extends Component {
             alert("No se puede guardar la imagen");
             return;
         }
-        let imageName = "servisofts.png";
+        let imageName = SUuid() + ".png";
         const dirs = RNFetchBlob.fs.dirs;
         const path = Platform.OS === 'ios' ? `${dirs.DocumentDir}/${imageName}` : `${dirs.PictureDir}/${imageName}`;
         // const path = `${dirs.PictureDir}/${imageName}`;
