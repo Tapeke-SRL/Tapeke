@@ -151,8 +151,6 @@ export default class pago_en_proceso extends Component {
                         </SView>
                         <SHr height={16} />
                         {/* <Contador date={this.state?.pay_order?.fecha_exp} ></Contador> */}
-                        <SHr height={16} />
-                        <SText fontSize={16} col={"xs-8"} color='white' center>¡Recuerda usar tapaboca para recoger tu pedido!</SText>
                         <SHr height={40} />
                     </Container>
                 </SView>
