@@ -45,7 +45,7 @@ range=100
 version_code=$((c + (b * range) + (a * range * range)))
 
 echo "$version_package_json"
-echo $version_code
+# echo $version_code
 
 _replace_android_version $version_package_json $version_code
 _replace_ios_version $version_package_json $version_code

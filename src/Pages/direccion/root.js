@@ -83,7 +83,9 @@ class index extends Component {
     render() {
         return (
             <>
-                <SPage title={"Mis direcciones"} header={<AccentBar />}>
+                <SPage title={"Mis direcciones"} header={<AccentBar />} onRefresh={()=>{
+                    Model.direccion_usuario.Action.CLEAR()
+                }}>
                     <Container>
                         <SHr />
                         {this.render_list()}

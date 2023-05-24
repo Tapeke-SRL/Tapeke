@@ -49,22 +49,25 @@ class index extends Component {
             </SView>
         )
         var REPETIR = (
-            <SView >
-                <SView width={120} height={24} style={{ backgroundColor: '#EEEEEE', borderRadius: 4 }} center onPress={() => {
-                    SNavigation.navigate('/restaurante', { pk: obj?.restaurante?.key })
-                }}>
-                    <SText fontSize={12} color={"#666"}>Repetir</SText>
-                </SView>
+            <SView width={120} height={24} style={{ backgroundColor: '#EEEEEE', borderRadius: 4 }} center >
+                <SText fontSize={12} color={"#666"}>Repetir</SText>
             </SView>
         )
 
-        if (obj.state == "pagado") return <BarraCargando />
-        if (obj.state == "pago_en_proceso") return <BarraCargando />
-        if (obj.state == "no_recogido") {
-            OPINAR = <SView col={"xs-6"} />
-        }
+        if (obj.state == "entregado" || obj.state == "cancelado" || obj.state == "timeout_pago" || obj.state == "no_recogido") {
 
-        return (<SView col={"xs-12"} flex style={{ alignItems: "flex-end" }}  >
+        } else {
+            return <BarraCargando />
+        }
+        // if (obj.state == "pagado") return <BarraCargando />
+        // if (obj.state == "pago_en_proceso") return <BarraCargando />
+        // if (obj.state == "no_recogido") {
+        //     OPINAR = <SView col={"xs-6"} />
+        // }
+
+        return (<SView col={"xs-12"} flex style={{ alignItems: "flex-end" }} onPress={() => {
+            console.log("Asdasd")
+        }} >
             {/* {OPINAR} */}
             {REPETIR}
         </SView>);
@@ -100,20 +103,15 @@ class index extends Component {
                 order={[{ key: "fecha", order: "desc", peso: 1 }]}
                 render={(obj, key) => {
                     return <SView col={"xs-12 "} height={120} row center border={STheme.color.card} style={{ borderRadius: 8, }}
-                    // onPress={() => {
-                    //     SNavigation.navigate("/pedido", { pk: obj.key })
-                    //     // if (obj.state == "pagado") {
-                    //     //     if (obj.delivery == 0) {
-                    //     //         SNavigation.navigate("pedido/usuario/pagado", { key_pedido: obj.key })
-                    //     //     }
-                    //     //     if (obj.delivery != 0) {
-                    //     //         SNavigation.navigate("pedido/delivery/pagado", { key_pedido: obj.key })
-                    //     //     }
-                    //     // }
-                    //     // if (obj.state == "no_recogido") {
-                    //     //     SNavigation.navigate("pedido/noRecogido", { key_pedido: obj.key });
-                    //     // }
-                    // }} 
+                        onPress={() => {
+                            // SNavigation.navigate("/pedido", { pk: obj.key })
+
+                            if (obj.state == "entregado") {
+                                SNavigation.navigate("/restaurante", { pk: obj.restaurante.key });
+                                return;
+                            }
+                            SNavigation.navigate("/pedido", { pk: obj.key })
+                        }}
                     >
                         <SHr height={9} />
                         <SView col={"xs-12"} row center border={"transparent"}  >

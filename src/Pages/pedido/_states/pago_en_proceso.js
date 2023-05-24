@@ -5,6 +5,7 @@ import { Contador, Container, PButtom, Restaurante, TipoPago } from '../../../Co
 import SSocket from 'servisofts-socket';
 import SShared from '../../../Components/SShared';
 import Model from '../../../Model';
+import BarraCargando from '../../../Components/BarraCargando';
 
 export default class pago_en_proceso extends Component {
     constructor(props) {
@@ -88,9 +89,19 @@ export default class pago_en_proceso extends Component {
 
     render() {
         const { delivery, precio, distancia, cantidad, key } = this.props.data;
-
+        if (!this.state.pay_order) {
+            return <SView center col={"xs-12"} height  >
+                <SIcon name='Logo' fill={STheme.color.secondary} width={200} height={200} />
+                <SHr h={100} />
+                <SView width={200} >
+                    <BarraCargando />
+                </SView>
+                <SHr />
+                <SText fontSize={14} center >Verificando método de pago.</SText>
+            </SView>
+        }
         return (
-            <SView center col={"xs-12"} flex style={{ backgroundColor: STheme.color.primary, }} >
+            <SView center col={"xs-12"} height style={{ backgroundColor: STheme.color.primary, }} >
                 <SHr height={16} />
                 <SView col={"xs-12"} style={{
                     padding: 8
@@ -103,8 +114,7 @@ export default class pago_en_proceso extends Component {
                 </SView>
 
                 <SView col={"xs-12"} center flex>
-                    <Container>
-
+                    <Container flex>
                         <SHr height={16} />
                         <SView col={"xs-9"} border={'transparent'}  >
                             <SText fontSize={16} color='white' center > El restaurante está confirmando tu pedido</SText>
@@ -141,8 +151,6 @@ export default class pago_en_proceso extends Component {
                         </SView>
                         <SHr height={16} />
                         {/* <Contador date={this.state?.pay_order?.fecha_exp} ></Contador> */}
-                        <SHr height={16} />
-                        <SText fontSize={16} col={"xs-8"} color='white' center>¡Recuerda usar tapaboca para recoger tu pedido!</SText>
                         <SHr height={40} />
                     </Container>
                 </SView>

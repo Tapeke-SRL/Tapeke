@@ -18,7 +18,7 @@ export default class PopupCodigoSeguridad extends Component {
             row
             ref={(form) => { this.form = form; }}
             inputs={{
-                codigo_seguridad: { label: "Ingrese el código", placeholder: "0000", isRequired: true, col: "xs-12", type: "password", maxLength: 4 },
+                codigo_seguridad: { label: "Ingrese el código", placeholder: "0000", isRequired: true, col: "xs-12", type: "password" , keyboardType:"numeric" ,maxLength: 4 },
             }}
             // onSubmitName={"Registrar"}
             onSubmit={(values) => {

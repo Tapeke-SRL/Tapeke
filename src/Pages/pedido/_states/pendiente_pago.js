@@ -160,6 +160,28 @@ export default class pendiente_pago extends Component {
         })
 
     }
+    Popupalert(label) {
+        var INSTACE = this;
+        return <SView
+            style={{
+                width: "100%",
+                maxWidth: 365,
+                height: 220,
+                borderRadius: 30,
+                padding: 8
+
+            }}
+            center
+            withoutFeedback
+            backgroundColor={STheme.color.background}
+        >
+            <SHr height={10} />
+            <SView col={"xs-10"} center >
+                <SText color={STheme.color.darkGray} style={{ fontSize: 16 }} center >{label}</SText>
+            </SView>
+            <SHr height={10} />
+        </SView>
+    }
     popupConfirmacion() {
         var INSTACE = this;
         return <SView
@@ -285,8 +307,9 @@ export default class pendiente_pago extends Component {
                         ...resp,
                         type: "action"
                     })
+
                     if (this.auxPedido.state == "pendiente_pago") {
-                        // SPopup.alert("No se pudo realizar el pago.")
+                        SPopup.alert("No se pudo realizar el pago.")
                     } else {
                         // Validations.set_pedido_en_curso(this.auxPedido);
                         // Validations.pedido_en_curso("pedido/confirmar");
@@ -408,7 +431,11 @@ export default class pendiente_pago extends Component {
                     <PButtom loading={this.state.loading} onPress={() => {
                         this.state.tipoPagoSelect = this._tipoPago.getValue()
                         if (!this.state.tipoPagoSelect) {
-                            SPopup.alert("Por favor, elige una de las opciones de pago disponibles para que podamos procesar tu pedido. ¡Gracias por tu compra!");
+                            SPopup.open({
+                                key:"alertnopay",
+                                content:this.Popupalert("Por favor, elige una de las opciones de pago disponibles para que podamos procesar tu pedido. ¡Gracias por tu compra!")
+                            })
+                            // SPopup.alert("Por favor, elige una de las opciones de pago disponibles para que podamos procesar tu pedido. ¡Gracias por tu compra!");
                             return;
                         }
                         if (this.state?.tipoPagoSelect?.key == "Efectivo" && this.state.cupon) {

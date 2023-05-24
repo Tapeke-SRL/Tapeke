@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, STheme, SIcon, SPopup } from 'servisofts-component';
+import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, STheme, SIcon, SPopup, SInput } from 'servisofts-component';
 import { AccentBar, Container, PButtom } from '../../Components';
 import Model from '../../Model';
 import HeaderTarjeta from './Components/HeaderTarjeta';
@@ -9,6 +9,7 @@ class index extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loadData: false
         };
         this.key = SNavigation.getParam("key");
     }
@@ -21,7 +22,7 @@ class index extends Component {
     }
 
     _handlingCardDate(number) {
-
+        if (!number) return;
         this.setState({
             cardDate: number.replace(
                 /^([1-9]\/|[2-9])$/g, '0$1/' // 3 > 03/
@@ -49,31 +50,35 @@ class index extends Component {
         }
 
         if (!data) return <SLoad />
-        if (!this.state.cardNumber) {
-            this.state.cardNumber = !data["numero_tarjeta"] ? "" : data["numero_tarjeta"].replace(/\s?/g, '').replace(/(\d{4})/g, '$1 ').trim();
+        if (!this.state.loadData) {
+            this.state.loadData = true;
+            if (!this.state.cardNumber) {
+                this.state.cardNumber = !data["numero_tarjeta"] ? "" : data["numero_tarjeta"].replace(/\s?/g, '').replace(/(\d{4})/g, '$1 ').trim();
+            }
+            if (!this.state.cardDate) {
+                this.state.cardDate = !data["mes"] ? "" : data["mes"] + "/" + data["ano"];
+            }
         }
-        if (!this.state.cardDate) {
-            this.state.cardDate = !data["mes"] ? "" : data["mes"] + "/" + data["ano"];
-        }
+
         return <SForm
             row
             ref={(form) => { this.form = form; }}
             inputs={{
-                nombre: { label: "Nombre", placeholder: "Nombre completo", isRequired: true, defaultValue: data["nombre"] },
+                nombre: { label: "Nombre del titular", placeholder: "Nombre completo", isRequired: true, defaultValue: data["nombre"] },
                 numero_tarjeta: {
                     label: "Número de tarjeta", placeholder: "0000 0000 0000 0000", isRequired: true, value: this.state.cardNumber, maxLength: 19,
                     onChangeText: (value) => {
                         this._handlingCardNumber(value)
                     },
-                    keyboardType: "phone-pad"
+                    keyboardType: "numeric"
                 },
                 fecha: {
-                    label: "Fecha Caducidad", placeholder: "MM/AA", isRequired: true, value: this.state.cardDate, col: "xs-12", maxLength: 5,
+                    label: "Fecha de caducidad", placeholder: "MM/AA", isRequired: true, value: this.state.cardDate, col: "xs-12", maxLength: 5,
                     onChangeText: (value) => {
                         this._handlingCardDate(value)
-                    }, keyboardType: "phone-pad"
+                    }, keyboardType: "numeric"
                 },
-                codigo_seguridad: { label: "Código de seguridad", placeholder: "0000", isRequired: true, defaultValue: data["codigo_seguridad"], col: "xs-12 sm-6 md-6 lg-6 xl-6", type: "password", maxLength: 4, keyboardType: "phone-pad", },
+                codigo_seguridad: { label: "Código de seguridad", placeholder: "0000", isRequired: true, defaultValue: data["codigo_seguridad"], col: "xs-12 sm-6 md-6 lg-6 xl-6", type: "password", maxLength: 4, keyboardType: "numeric", },
             }}
             onSubmit={(values) => {
                 // this.form
@@ -167,7 +172,7 @@ class index extends Component {
                             SPopup.open({ content: this.popupQueEs(), key: "queEs" });
                         }} row
                         >
-                            <SText fontSize={12}   color={STheme.color.primary}>¿Qué es esto?</SText>
+                            <SText fontSize={12} color={STheme.color.primary}>¿Qué es esto?</SText>
                             <SIcon name={"Alert2"} width={15}></SIcon>
                             <SView width={15}></SView>
                         </SView>

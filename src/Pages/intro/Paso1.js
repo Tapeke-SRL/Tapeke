@@ -27,7 +27,7 @@ class Paso1 extends React.Component {
                         <SView col={"xs-12"} center>
                             <SText color={STheme.color.text} fontSize={21} style={{ fontWeight: "bold" }} center >Buscar en el mapa</SText>
                             <SHr height={15} />
-                            <SText color={STheme.color.gray} fontSize={13} center height={45}>No tienes que ir muy lejos para encontrar un buen restaurante, hemos proporcionado todos los
+                            <SText color={STheme.color.gray} fontSize={13} center >No tienes que ir muy lejos para encontrar un buen restaurante, hemos proporcionado todos los
                                 restaurantes que están cerca de ti.</SText>
                         </SView>
                     </SView>
