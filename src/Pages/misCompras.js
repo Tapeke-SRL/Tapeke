@@ -106,7 +106,7 @@ class index extends Component {
                         onPress={() => {
                             // SNavigation.navigate("/pedido", { pk: obj.key })
 
-                            if (obj.state == "entregado") {
+                            if (obj.state == "entregado" || obj.state == "no_recogido" || obj.state == "cancelado") {
                                 SNavigation.navigate("/restaurante", { pk: obj.restaurante.key });
                                 return;
                             }
@@ -137,8 +137,9 @@ class index extends Component {
                         </SView>
                         <SHr height={9} />
                     </SView>
-                }} />
-        </SView>
+                }
+                } />
+        </SView >
     }
 
     render() {

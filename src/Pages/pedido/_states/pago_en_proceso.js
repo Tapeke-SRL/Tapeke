@@ -88,6 +88,12 @@ export default class pago_en_proceso extends Component {
 
 
     render() {
+
+        return <SView center col={"xs-12"} height >
+            {this.render_data()}
+        </SView>
+    }
+    render_data() {
         const { delivery, precio, distancia, cantidad, key } = this.props.data;
         if (!this.state.pay_order) {
             return <SView center col={"xs-12"} height  >
@@ -100,61 +106,57 @@ export default class pago_en_proceso extends Component {
                 <SText fontSize={14} center >Verificando método de pago.</SText>
             </SView>
         }
-        return (
-            <SView center col={"xs-12"} height style={{ backgroundColor: STheme.color.primary, }} >
-                <SHr height={16} />
-                <SView col={"xs-12"} style={{
-                    padding: 8
-                }}>
-                    <SText fontSize={18} color='white' onPress={() => {
-                        Model.pedido.Action.action({ key_pedido: key, action: "select_pay_method" }).then((resp) => {
-                            console.log(resp);
-                        })
-                    }} underLine>{"< Volver a selecionar método de pago"}</SText>
-                </SView>
+        return (<SView center col={"xs-12"} height style={{ backgroundColor: STheme.color.primary, }} >
+            <SHr height={16} />
+            <SView col={"xs-12"} style={{
+                padding: 8,
+                position: "absolute",
+                top: 0,
 
-                <SView col={"xs-12"} center flex>
-                    <Container flex>
-                        <SHr height={16} />
-                        <SView col={"xs-9"} border={'transparent'}  >
-                            <SText fontSize={16} color='white' center > El restaurante está confirmando tu pedido</SText>
-                        </SView>
-                        <SHr height={16} />
-                        <SView col={"xs-12"} center  >
-
-                            <SView center col={"xs-9"} colSquare backgroundColor={"#fff"} style={{ padding: 40, borderRadius: 16 }}>
-                                <SImage src={`${this.getQr()}`} />
-                                <SView style={{ position: "absolute", width: 40, height: 40, transform: [{ rotate: "0deg" }], left: 20, top: 20 }} ><SIcon name={"BarraQr"} ></SIcon></SView>
-                                <SView style={{ position: "absolute", width: 40, height: 40, transform: [{ rotate: "270deg" }], left: 20, bottom: 15 }} ><SIcon name={"BarraQr"} ></SIcon></SView>
-                                <SView style={{ position: "absolute", width: 40, height: 40, transform: [{ rotate: "90deg" }], right: 20, top: 20 }} ><SIcon name={"BarraQr"} ></SIcon></SView>
-                                <SView style={{ position: "absolute", width: 40, height: 40, transform: [{ rotate: "180deg" }], right: 20, bottom: 15 }} ><SIcon name={"BarraQr"} ></SIcon></SView>
-                            </SView>
-                        </SView>
-                        <SHr height={16} />
-                        <SView col={"xs-12"} height={100} row center  >
-                            <SView col={"xs-2"} height center>
-                            </SView>
-                            <SView flex center height={60} >
-                                <SView height={60} colSquare center style={{ backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.primary, borderWidth: 2, padding: 8 }} onPress={() => {
-                                    SPopup.alert("QR descargada con exito");
-                                    SShared.saveB64(this.getQr())
-                                }}>
-                                    <SIcon name={"ImgSave"} />
-                                </SView>
-                            </SView>
-                            <SView flex center height={60} >
-                                <SView height={60} colSquare center style={{ backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.primary, borderWidth: 2, padding: 8 }} onPress={() => { SShared.sharedB64(this.getQr()) }}>
-                                    <SIcon name={"ImgShare"} />
-                                </SView>
-                            </SView>
-                            <SView col={"xs-2"} height center></SView>
-                        </SView>
-                        <SHr height={16} />
-                        {/* <Contador date={this.state?.pay_order?.fecha_exp} ></Contador> */}
-                        <SHr height={40} />
-                    </Container>
-                </SView>
+            }}>
+                <SText fontSize={18} color='white' onPress={() => {
+                    Model.pedido.Action.action({ key_pedido: key, action: "select_pay_method" }).then((resp) => {
+                        console.log(resp);
+                    })
+                }} underLine>{"< Volver"}</SText>
             </SView>
+
+            <Container>
+
+                <SHr height={16} />
+                <SView col={"xs-9"} border={'transparent'}  >
+                    <SText fontSize={16} color='white' center >Escanea el QR para realizar el</SText>
+                </SView>
+                <SHr height={16} />
+                <SView col={"xs-12"} center  >
+                    <SView center col={"xs-9"} colSquare backgroundColor={"#fff"} style={{ padding: 40, borderRadius: 16 }}>
+                        <SImage src={`${this.getQr()}`} />
+                        <SView style={{ position: "absolute", width: 40, height: 40, transform: [{ rotate: "0deg" }], left: 20, top: 20 }} ><SIcon name={"BarraQr"} ></SIcon></SView>
+                        <SView style={{ position: "absolute", width: 40, height: 40, transform: [{ rotate: "270deg" }], left: 20, bottom: 15 }} ><SIcon name={"BarraQr"} ></SIcon></SView>
+                        <SView style={{ position: "absolute", width: 40, height: 40, transform: [{ rotate: "90deg" }], right: 20, top: 20 }} ><SIcon name={"BarraQr"} ></SIcon></SView>
+                        <SView style={{ position: "absolute", width: 40, height: 40, transform: [{ rotate: "180deg" }], right: 20, bottom: 15 }} ><SIcon name={"BarraQr"} ></SIcon></SView>
+                    </SView>
+                </SView>
+                <SHr height={16} />
+                <SView col={"xs-12"} height={100} center row>
+                    <SView flex center height={60} >
+                        <SView height={60} colSquare center style={{ backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.primary, borderWidth: 2, padding: 8 }} onPress={() => {
+                            SPopup.alert("QR descargada con exito");
+                            SShared.saveB64(this.getQr())
+                        }}>
+                            <SIcon name={"ImgSave"} />
+                        </SView>
+                    </SView>
+                    <SView flex center height={60} >
+                        <SView height={60} colSquare center style={{ backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.primary, borderWidth: 2, padding: 8 }} onPress={() => { SShared.sharedB64(this.getQr()) }}>
+                            <SIcon name={"ImgShare"} />
+                        </SView>
+                    </SView>
+                </SView>
+            </Container>
+            <SHr height={16} />
+
+        </SView>
         );
     }
 }

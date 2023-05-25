@@ -50,7 +50,8 @@ class index extends Component {
                     key_usuario: Model.usuario.Action.getKey()
                 }).then((resp) => {
                     SStorage.setItem("usr_log", JSON.stringify(finalObj)) //Modificar SStorage datos session
-                    Model.usuario.Action.CLEAR(); //Limpiar caché
+                    // Model.usuario.Action.CLEAR(); //Limpiar caché
+                    Model.usuario.Action.syncUserLog()
                     SNavigation.goBack();
                 }).catch((e) => {
                     SPopup.alert("Error en los datos");
