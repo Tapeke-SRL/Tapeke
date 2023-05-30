@@ -1,6 +1,6 @@
 {
   "name": "tapeke_app",
-  "version": "4.1.6",
+  "version": "4.1.7",
   "description": "tapeke_app",
   "scripts": {
     "start": "react-native start",
@@ -55,7 +55,7 @@
     "servisofts-component": "2.11.2",
     "servisofts-model": "1.0.3",
     "servisofts-page": "1.0.7",
-    "servisofts-rn-chat": "1.0.4",
+    "servisofts-rn-chat": "1.0.5",
     "servisofts-rn-geolocation": "1.0.2",
     "servisofts-rn-roles_permisos": "1.0.1",
     "servisofts-rn-usuario": "1.0.7",

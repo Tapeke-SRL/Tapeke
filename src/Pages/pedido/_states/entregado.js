@@ -61,7 +61,7 @@ export default class listo extends Component {
     calificar() {
         var obj = {
             key_pedido: this.props.data.key,
-            star: this.state.selectValue,
+            star: this.state.selectValue ?? 5,
             buena_calidad: this.state.buena_calidad == true,
             buena_cantidad: this.state.buena_cantidad == true,
             buen_servicio: this.state.buen_servicio == true,
