@@ -49,13 +49,13 @@ class index extends Component {
                     <SView col={"xs-8 md-9"} height style={{
                         justifyContent: "center",
                     }}>
-                        <SText   color={STheme.color.text} fontSize={12} style={{ paddingLeft: 4 }} >{fecha}</SText>
+                        <SText color={STheme.color.text} fontSize={12} style={{ paddingLeft: 4 }} >{fecha}</SText>
                         <SHr height={4} />
-                        <SText   color={STheme.color.gray} fontSize={10} style={{ paddingLeft: 4 }} >{descripcion}</SText>
+                        <SText color={STheme.color.gray} fontSize={10} style={{ paddingLeft: 4 }} >{descripcion}</SText>
                     </SView>
                     <SView col={"xs-4 md-3"} style={{ textAlign: "right" }} row >
                         <SIcon name={monto > 0 ? 'Ingreso' : 'Egreso'} width={20} height={15} fill={"#8DBF3B"} /><SView col={"xs-1"} />
-                        <SText   color={STheme.color.text} fontSize={14}>{SMath.formatMoney(monto)}</SText>
+                        <SText color={STheme.color.text} fontSize={14}>{SMath.formatMoney(monto)}</SText>
                     </SView>
                 </SView>
             </SView>
@@ -72,6 +72,9 @@ class index extends Component {
             return "Cargado por tapeke"
         }
         if (obj.tipo_pago == 'reembolso_tapeke') {
+            return obj.detalle
+        }
+        if (obj.tipo_pago == 'reembolso_tapeke_no_entregado') {
             return obj.detalle
         }
         return obj.tipo_pago
