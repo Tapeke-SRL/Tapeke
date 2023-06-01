@@ -15,12 +15,15 @@ class index extends Component {
         // Model.pedido.Action.getDetalle(this.pk).then((resp) => {
         //     console.log(resp);
         // })
+
         this.isRun = true;
-        this.hilo();
+       this.hilo();
     }
     componentWillUnmount() {
         this.isRun = false;
     }
+
+    
     hilo() {
         if (!this.isRun) return;
         this.state.data = Model.pedido.Action.getDetalle(this.pk);
