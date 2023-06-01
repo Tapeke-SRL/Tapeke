@@ -19,7 +19,7 @@ export default class QRPedido extends Component<propsType> {
 
     }
     componentDidMount() {
-        if(!this.props.data.key) return;
+        if (!this.props.data.key) return;
         Model.pedido.Action.getQR({ key_pedido: this.props.data.key }).then((resp) => {
             if (resp.estado != "exito") return;
             this.setState({ data: resp.data })
@@ -48,8 +48,14 @@ export default class QRPedido extends Component<propsType> {
                     {this.getImage(this.props.data)}
                 </SView>
                 {/* <SText fontSize={18} color={STheme.color.primary} bold center >Hora de entrega: {this.props.data?.horario?.hora_inicio} - {this.props.data?.horario?.hora_fin}</SText> */}
+                <SHr height={15} />
                 <SText fontSize={18} color={STheme.color.primary} bold center >{new SDate(this.props.data?.fecha, "yyyy-MM-dd").toString("DAY, dd de MONTH del yyyy")}</SText>
-                <SText fontSize={18} color={STheme.color.primary} bold center >{this.props.data?.horario?.hora_inicio} - {this.props.data?.horario?.hora_fin}</SText>
+                <SView col row center>
+                    <SIcon name={"Ihorario"} width={17} fill={STheme.color.primary}/>
+                    <SView width={5} />
+                    <SText fontSize={18} color={STheme.color.primary} bold center >{this.props.data?.horario?.hora_inicio} - {this.props.data?.horario?.hora_fin}</SText>
+                </SView>
+
                 {/* <SHr height={10} /> */}
                 {/* <PButtom fontSize={20} onPress={() => {}}>ESTADO PEDIDO</PButtom> */}
                 <SHr height={40} />

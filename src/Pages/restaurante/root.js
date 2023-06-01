@@ -14,6 +14,7 @@ class index extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            alerta: true
         };
         this.pk = SNavigation.getParam("pk");
     }
@@ -91,11 +92,70 @@ class index extends Component {
         }
     }
 
+    btn = ({ title, onPress, active }) => {
+        return <SView col={"xs-5.5"} height={44} center border={STheme.color.primary} backgroundColor={active ? STheme.color.primary : ""} style={{ borderRadius: 8 }} onPress={onPress}  >
+            <SText fontSize={14} color={active ? STheme.color.secondary : STheme.color.primary} bold>{title}</SText>
+        </SView>
+    }
+
+    popupAlerta(dato) {
+        if (!dato) return <SLoad />
+        var INSTACE = this;
+        return <SView
+            style={{
+                width: "100%",
+                maxWidth: 365,
+                height: 220,
+                borderRadius: 30,
+                padding: 8
+
+            }}
+            center
+            withoutFeedback
+            backgroundColor={STheme.color.background}
+        >
+            <SHr height={10} />
+            <SView col={"xs-10"} center >
+                <SText color={STheme.color.darkGray} style={{ fontSize: 16 }} center >El tapeke estará disponible en el siguiente horario:</SText>
+            </SView>
+            <SHr height={10} />
+            <SView col={"xs-10"} center row>
+                <SView col row style={{ borderColor: "#FA790E", borderBottomWidth: 2}} />
+                <SHr/>
+                <SView col={"xs-8"} center>
+                    <SText bold fontSize={16}>{dato?.proximo_horario?.extraData?.text}</SText>
+                    <SText bold fontSize={18} >
+                        {dato?.proximo_horario?.extraData?.hora_inicio} - {dato?.proximo_horario?.extraData?.hora_fin}
+                    </SText>
+                </SView>
+                <SView col={"xs-3"}  style={{alignItems:"flex-start"}}>
+                    <SIcon name='Ihand' width={60} height={60} fill='#96BE00'/>
+                </SView>
+                <SHr/>
+                <SView col row style={{ borderColor: "#FA790E", borderBottomWidth: 2}} />
+                <SHr/>
+            </SView>
+            <SView flex />
+            <SView col={"xs-12"} style={{ alignItems: "center", }}>
+                <SView row col={"xs-11"} center>
+                <SHr height={10}/>
+                    {this.btn({ title: "Entendido", onPress: () => { SPopup.close("alerta"); }, active: true })}
+                </SView>
+            </SView>
+            <SView flex />
+            <SHr />
+        </SView>
+    }
+
     render_data() {
         if (!this.state.loading) {
             return <SLoad />
         }
         if (!this.load_data()) return <SLoad />
+        if (this.data && this.state.alerta) {
+            this.setState({ alerta: false })
+            SPopup.open({ key: "alerta", content: this.popupAlerta(this.data) });
+        }
         return <SView col={"xs-12"} center style={{ backgroundColor: STheme.color.card }}>
             <Restaurante.FotoPortada data={this.data} height={150} />
             <SView col={"xs-12"} row style={{ backgroundColor: STheme.color.white }} center>

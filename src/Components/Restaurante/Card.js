@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SHr, SImage, SMath, SPage, SText, STheme, SView } from 'servisofts-component';
+import { SHr, SIcon, SImage, SMath, SPage, SText, STheme, SView } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
 import Restaurante from '.';
 export type RestauranteCardPropsType = {
@@ -43,12 +43,12 @@ class index extends Component<RestauranteCardPropsType> {
     }
     render() {
         var { key, nombre, proximo_horario, distancia } = this.props.data;
-       
+
         return (
             <SView
                 width={320}
                 // col={"xs-11"}
-                height={186} 
+                height={186}
                 style={{
                     borderRadius: 16,
                     borderColor: "#AAAAAA22",
@@ -86,11 +86,26 @@ class index extends Component<RestauranteCardPropsType> {
                             paddingLeft: 8
                         }}>
                             {/* <Restaurante.ProximoHorario data={this.props.data} /> */}
+                            <SHr height={10} />
+                            {/* <SView col={"xs-12"} row>
+                                <SIcon name='Ihorario' height={13.5} width={13.5} />
+                                <SView width={5} />
+                                <SText fontSize={12}>HORARIO</SText>
+                            </SView> */}
+
                             <SText fontSize={11}>{proximo_horario?.extraData?.text}</SText>
-                            <SText fontSize={11}>{proximo_horario?.extraData?.hora_inicio} - {proximo_horario?.extraData?.hora_fin}</SText>
+                            <SText fontSize={14} >
+                                {proximo_horario?.extraData?.hora_inicio} - {proximo_horario?.extraData?.hora_fin}
+                            </SText>
+                            <SView style={{ width: 84, borderColor: "#FA790E", borderBottomWidth: 3 }}></SView>
                         </SView>
                         <SView flex height center>
-                            <SText>{distancia + " Km"}</SText>
+                        <SView col row center>
+                                <SIcon name='Idistancia' height={13.5} width={13.5} />
+                                <SView width={5} />
+                                <SText>{distancia + " Km"}</SText>
+                            </SView>
+                            
                         </SView>
                         <SView flex height center>
                             <SText>{"Bs " + SMath.formatMoney(proximo_horario?.pack?.precio ?? 0)}</SText>
