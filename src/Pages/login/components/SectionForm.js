@@ -14,6 +14,16 @@ export default class SectionForm extends Component {
     submit() {
         this.form.submit();
     }
+    fadeOut() {
+        Animated.timing(this.animSize, {
+            toValue: 0,
+            duration: 0,
+            useNativeDriver: true
+        }).start(() => {
+            this.state.width = 0;
+            this.setState({ isOpen: false, });
+        });
+    }
     render() {
         return (
             <SView col={"xs-12"} center>
@@ -51,21 +61,29 @@ export default class SectionForm extends Component {
                         if (data) {
                             data["password"] = CryptoJS.MD5(data["password"]).toString();
                             data["usuario"] = data["usuario"].toLowerCase();
-                            console.log(data["usuario"]);
                             // Parent.Actions.login(data, this.props);
-                            this.setState({ loading: true, error: "" })
                             Model.usuario.Action.loginByKey(data).then((resp) => {
-                                SNavigation.goBack();
-                                this.setState({ loading: false, error: "" })
-                                // SNavigation.reset("/");
+                                if (resp.data.estado == "0") {
+                                    SPopup.alert("Usuario eliminado");
+                                    this.setState({ loading: false, error: "Usuario eliminado" })
+
+                                    Model.usuario.Action.unlogin();
+                                    // SNavigation.reset("/");
+                                    SNavigation.navigate("/login");
+                                    this.fadeOut();
+                                } else {
+                                    SNavigation.goBack();
+                                }
+                               
                             }).catch((e) => {
                                 if (e?.error == "error_password") {
                                     this.setState({ loading: false, error: "Usuario o contraseña incorrectos." })
-                                }else{
+                                } else {
                                     this.setState({ loading: false, error: "Ha ocurrido un error al iniciar sesión." })
                                 }
                                 // SPopup.alert("Error en los datos");
                             })
+
                         }
                     }}
                 />

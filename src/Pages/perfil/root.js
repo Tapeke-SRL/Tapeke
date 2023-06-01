@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SHr, SNavigation, SPage, SText, SView, STheme, SImage, SLoad, SButtom, SIcon, SWebView, STable2, SMath, SDate, SList, } from 'servisofts-component';
+import { SHr, SNavigation, SPage, SText, SView, STheme, SImage, SLoad, SButtom, SIcon, SWebView, STable2, SMath, SDate, SList, SPopup} from 'servisofts-component';
 import { WebView } from 'react-native';
 import SSocket from 'servisofts-socket';
 import Model from '../../Model';
@@ -82,7 +82,7 @@ class index extends Component {
     }
     getDato(key, icon) {
         // var text = usuario_dato
-        if(!this.data) return null;
+        if (!this.data) return null;
         var text = this.data[key] ?? '--';
         if (key == "Password") {
             text = "************"
@@ -115,12 +115,12 @@ class index extends Component {
             // Model.usuario.Action.CLEAR();
             // Model.usuario.Action.syncUserLog*
             // console.log
-            
+
         }} header={<AccentBar />}>
             <SView col={"xs-12"} center>
                 <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
                     {/* <SView height={80}></SView> */}
-                    <SHr height={10}/>
+                    <SHr height={10} />
                     {this.getPerfil()}
                     <SView height={10}></SView>
                     {this.getDatos()}
@@ -129,9 +129,23 @@ class index extends Component {
                     <PButtom fontSize={20} onPress={() => {
                         SNavigation.navigate("/perfil/editar", { key: this.data.key });
                     }}>EDITAR</PButtom>
-
+                    <SHr height={10} />
+                    <PButtom fontSize={20}  onPress={() => {
+                        SPopup.confirm({
+                            title: "Eliminar cuenta", message: "¿Estás seguro de eliminar la cuenta?", onPress: () => {
+                                Model.usuario.Action.editar({
+                                    data: {
+                                        ...this.data,
+                                        estado: 0
+                                    },
+                                }
+                                );
+                                Model.usuario.Action.CLEAR() //Limpiar caché
+                                Model.usuario.Action.unlogin();
+                            }
+                        })
+                    }}>ELIMINAR CUENTA</PButtom>
                     <SView height={30}></SView>
-
                 </SView>
             </SView>
         </SPage>

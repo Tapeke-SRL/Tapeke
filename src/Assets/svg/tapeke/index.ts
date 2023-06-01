@@ -100,9 +100,9 @@ import mCupon, { ReactComponent as mCuponW } from './mcupon.svg';
 import Ichat, { ReactComponent as IchatW } from './irchat.svg';
 import Idetall, { ReactComponent as IdetallW } from './idetall.svg';
 import None, { ReactComponent as NoneW } from './none.svg';
-
-
-
+import Idistancia, { ReactComponent as IdistanciaW } from './idistancia.svg';
+import Ihorario, { ReactComponent as IhorarioW } from './ihorario.svg';
+import Ihand, { ReactComponent as IhandW } from './ihand.svg';
 
 
 
@@ -210,6 +210,9 @@ const Assets = {
 	"Ichat": { Native: Ichat, Web: IchatW },
 	"Idetall": { Native: Idetall, Web: IdetallW },
 	"Noneicon": { Native: None, Web: NoneW },
+	"Idistancia": { Native: Idistancia, Web: IdistanciaW },
+	"Ihorario": { Native: Ihorario, Web: IhorarioW },
+	"Ihand": { Native: Ihand, Web: IhandW },
 	
 
 
