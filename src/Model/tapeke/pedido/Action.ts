@@ -155,7 +155,7 @@ export default class Action extends SAction {
                 return 'Buscando Conductor.';
 
             case 'esperando_conductor':
-                return 'Esperando Conductor.';
+                return 'El conductor está en camino a recoger tu pedido.';
 
             case 'entregado_conductor':
                 return 'Entregado al Conductor.';
