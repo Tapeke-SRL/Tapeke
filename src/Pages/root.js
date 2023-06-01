@@ -17,6 +17,7 @@ class index extends Component {
 
     clearData() {
         Model.pedido.Action.CLEAR();
+        Model.pedido.Action._getReducer().data_activos_inicio = "";
         Model.horario.Action.CLEAR();
         Model.pack.Action.CLEAR();
         Model.restaurante.Action.CLEAR();
