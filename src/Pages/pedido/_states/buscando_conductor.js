@@ -28,7 +28,7 @@ export default class buscando_conductor extends Component {
     hilo() {
         if (!this.isRun) return;
         this.buscar_posicion_conductor()
-        new SThread(5000, "hilo_pedido_background", true).start(() => {
+        new SThread(3000, "hilo_pedido_background", true).start(() => {
             this.hilo();
         })
     }
