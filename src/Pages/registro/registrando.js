@@ -23,8 +23,14 @@ class registrando extends Component {
                 usuario: usuario.Correo,
                 password: usuario.Password
             }).then(resp => {
-                SNavigation.replace("/");
+                SNavigation.reset("/");
+            }).catch(e=>{
+                SPopup.alert("Error al iniciar con el nuevo usuario");
+                SNavigation.reset("/");
             })
+        }).catch(err => {
+            SPopup.alert("Error al registrar usuario");
+            SNavigation.goBack();
         })
     }
     render() {
@@ -33,7 +39,7 @@ class registrando extends Component {
         };
         return (
             <SPage preventBack>
-                <Header title={"Regitrando en la bd"} />
+                <Header title={"Registrando en la base de datos"} />
                 <Container>
                     <SLoad />
                     {/* <SText col={"xs-12"}>{JSON.stringify(this.params)}</SText> */}

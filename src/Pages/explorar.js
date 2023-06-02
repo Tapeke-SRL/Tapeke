@@ -19,7 +19,13 @@ class index extends Component {
         })
     }
     clearData() {
+        Model.pedido.Action.CLEAR();
+        Model.pedido.Action._getReducer().data_activos_inicio = "";
+        Model.horario.Action.CLEAR();
+        Model.pack.Action.CLEAR();
         Model.restaurante.Action.CLEAR();
+        Model.pack_extra.Action.CLEAR();
+        Model.favorito.Action.CLEAR();
     }
     loadData() {
         this.restaurantes = Model.restaurante.Action.getAllFilters();
