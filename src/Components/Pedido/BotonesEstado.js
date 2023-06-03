@@ -118,7 +118,7 @@ class index extends Component<BotonesEstadoPropsType> {
                                         </SView>
                                     </SView>
                                 </SView> */}
-                                <DetalleBox data={this.props.data} interline={5} padding={5} />
+                                <DetalleBox data={this.props.data} interline={5} padding={5} fontSize={14} />
                             </SView>
                         </SView>
                     </SView>

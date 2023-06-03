@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SText, SView, STheme, SDate } from 'servisofts-component';
+import { SText, SView, STheme, SDate, SLoad } from 'servisofts-component';
 
 // posicion_conductor  **
 export default class HoraEstimada extends Component {
@@ -68,9 +68,18 @@ export default class HoraEstimada extends Component {
         return <SText bold center fontSize={20}>{"Buscando conductor..."}</SText>
     }
     render() {
-
+        if(!this.props?.data) return <SLoad/>
         if (this.props?.data?.state == "confirmando_conductor" || this.props?.data?.state == "buscando_conductor") return this.render_buscando_conductor();
-        if (this.props.posicion_conductor) return this.render_aproximado_conductor();
+        
+        if(this.props?.data?.state == "entregado_conductor"){
+            if (this.props.posicion_conductor){
+                return this.render_aproximado_conductor();  
+            } else{
+                return <SLoad/>
+            }
+
+        }
+        
         return <SText col={"xs-12"} color={STheme.color.text} style={{ fontSize: 40 }} bold center>{`${this.props?.data?.horario?.hora_inicio} - ${this.props?.data?.horario?.hora_fin}`}</SText>
     }
 }

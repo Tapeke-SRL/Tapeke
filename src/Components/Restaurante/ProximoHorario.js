@@ -22,7 +22,7 @@ class index extends Component<ProximoHorarioPropsType> {
         >
             <SIcon name={"Reloj"} width={13} />
             <SView width={6} />
-            <SText fontSize={12} >{proximo_horario.text}</SText>
+            <SText style={{ borderColor: "#FA790E", borderBottomWidth: 1.5,  }} fontSize={14} >{proximo_horario.text}</SText>
             <SView flex />
         </SView>
     }

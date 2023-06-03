@@ -70,8 +70,8 @@ class password extends Component {
                         ref={(form) => { this.form = form; }}
                         inputProps={{ separation: 16 }}
                         inputs={{
-                            Password: { placeholder: "Password", isRequired: true, type: "password" },
-                            RepPassword: { placeholder: "Repetir password", type: "password", isRequired: true },
+                            Password: { placeholder: "Contraseña", isRequired: true, type: "password" },
+                            RepPassword: { placeholder: "Repetir Contraseña", type: "password", isRequired: true },
                         }}
                         onSubmit={this.onSubmit.bind(this)}
                     />

@@ -132,8 +132,8 @@ class index extends Component {
                         }
                     }).catch((err) => {
                         this.setState({ loading: false });
-                        SPopup.alert("Error en el pago");
-                        console.error("Error en el pago", err);
+                        SPopup.alert("No se pudo procesar la recarga");
+                        console.error("No se pudo procesar la recarga", err);
                     });
                 }}>CARGAR CRÉDITO</PButtom>
                 <SHr height={30} />

@@ -19,7 +19,7 @@ export default class Action extends SAction {
 
         Object.values(packs).map((pack: any) => {
             var pedidos_del_pack = lista.filter((obj: any) => obj.key_pack == pack.key);
-            var extras_del_pack = lista_pack_extras.filter((obj: any) => obj.key_pack == pack.key && new SDate(obj.fecha,"yyyy-MM-ddThh:mm:ss").toString("yyyy-MM-dd") == curday);
+            var extras_del_pack = lista_pack_extras.filter((obj: any) => obj.key_pack == pack.key && new SDate(obj.fecha, "yyyy-MM-ddThh:mm:ss").toString("yyyy-MM-dd") == curday);
             pack.pedidos = pedidos_del_pack;
             var pedidos_activos = pedidos_del_pack.filter((p: any) => p.state != "pendiente_pago" && p.state != "timeout_pago");
             var cantidad = 0;

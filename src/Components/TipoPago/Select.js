@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { SHr, SIcon, SImage, SNavigation, SText, STheme, SView, SLoad, SInput } from 'servisofts-component';
+import Model from '../../Model';
 
 
 class TipoPago extends Component {
@@ -37,7 +38,7 @@ class TipoPago extends Component {
                 "card_holder_name": card.nombre,
                 "encryption": false,
                 "expiration_month": card.mes,
-                "card_holder_email": "rickypazd@icloud.com",
+                "card_holder_email": Model.usuario.Action.getUsuarioLog()?.Correo,
                 "tokenization": false
             };
         }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SButtom, SHr, SIcon, SImage, SLoad, SNavigation, SPage, SText, STheme, SView, SInput, SPopup } from 'servisofts-component';
+import { SButtom, SHr, SIcon, SImage, SLoad, SNavigation, SPage, SText, STheme, SView, SInput, SPopup, SNativeModules } from 'servisofts-component';
 import { AccentBar, PButtom } from '../../Components';
 import Model from '../../Model';
 import { GeolocationMapSelect } from 'servisofts-rn-geolocation'
@@ -23,6 +23,12 @@ class index extends Component {
         // if (typeof this.callback != "function") {
         //     SNavigation.replace("/")
         // }
+    }
+    componentDidMount() {
+        SNativeModules.setSoftInputMode("adjustResize")
+    }
+    componentWillUnmount() {
+        SNativeModules.setSoftInputMode("adjustPan")
     }
 
     getImput() {

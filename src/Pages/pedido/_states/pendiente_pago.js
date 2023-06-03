@@ -249,22 +249,22 @@ export default class pendiente_pago extends Component {
             }}
             onSubmit={(values) => {
                 var usuario = Model.usuario.Action.getUsuarioLog();
-                var timeOut = 15000;
+                var timeOut = 15 * 1000;
                 var tipoPago = this.state.tipoPagoSelect
                 var typeQhuantuy = ""
                 var card = "";
                 switch (tipoPago.key) {
                     case "QR":
                         typeQhuantuy = "QR"
-                        timeOut = 15000;
+                        timeOut = 60 * 1000;
                         break;
                     case "Efectivo":
                         typeQhuantuy = "Efectivo"
-                        timeOut = 15000;
+                        timeOut = 30 * 1000;
                         break;
                     case "Billetera":
                         typeQhuantuy = "Billetera"
-                        timeOut = 15000;
+                        timeOut = 30 * 1000;
                         break;
                     case "Credito":
                         typeQhuantuy = "CYBERSOURCE"
@@ -303,24 +303,25 @@ export default class pendiente_pago extends Component {
                     }, timeOut
                 ).then((resp) => {
                     this.auxPedido = resp.data;
-                    Model.pedido.Action._dispatch({
-                        ...resp,
-                        type: "action"
-                    })
+                    // Model.pedido.Action._dispatch({
+                    //     ...resp,
+                    //     type: "action"
+                    // })
 
-                    if (this.auxPedido.state == "pendiente_pago") {
-                        SPopup.alert("No se pudo realizar el pago.")
-                    } else {
-                        // Validations.set_pedido_en_curso(this.auxPedido);
-                        // Validations.pedido_en_curso("pedido/confirmar");
-                    }
+                    // if (this.auxPedido.state == "pendiente_pago") {
+                    //     SPopup.alert("No se pudo realizar el pago.")
+                    // } else {
+                    //     // Validations.set_pedido_en_curso(this.auxPedido);
+                    //     // Validations.pedido_en_curso("pedido/confirmar");
+                    // }
                     this.setState({ loading: false });
                 }).catch((err) => {
                     this.setState({ loading: false });
                     if (err.pay_method == "Billetera") {
                         Popups.BilleteraSinFondos.open({})
                     } else {
-                        SPopup.alert(err.error)
+                        var obje= JSON.parse(err.error)
+                        SPopup.alert(obje.message)
                     }
 
                 });
@@ -432,8 +433,8 @@ export default class pendiente_pago extends Component {
                         this.state.tipoPagoSelect = this._tipoPago.getValue()
                         if (!this.state.tipoPagoSelect) {
                             SPopup.open({
-                                key:"alertnopay",
-                                content:this.Popupalert("Por favor, elige una de las opciones de pago disponibles para que podamos procesar tu pedido. ¡Gracias por tu compra!")
+                                key: "alertnopay",
+                                content: this.Popupalert("Por favor, elige una de las opciones de pago disponibles para que podamos procesar tu pedido. ¡Gracias por tu compra!")
                             })
                             // SPopup.alert("Por favor, elige una de las opciones de pago disponibles para que podamos procesar tu pedido. ¡Gracias por tu compra!");
                             return;

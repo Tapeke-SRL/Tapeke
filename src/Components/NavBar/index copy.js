@@ -1,12 +1,12 @@
 import React from 'react';
 import { Animated } from 'react-native';
-import { SView, SImage, SNavigation, STheme, SIcon, SText, SScrollView2, SHr } from 'servisofts-component';
+import { SView, SImage, SNavigation, STheme, SIcon, SText, SScrollView2, SHr, SThread } from 'servisofts-component';
 import { connect } from 'react-redux';
 import SSocket from 'servisofts-socket';
 import Model from '../../Model';
 // import CerrarSession from '../../Pages/Usuario/Page/Perfil/CerrarSession';
 
-
+import { version as APPversion } from "../../../package.json";
 class NavBar extends React.Component {
 	static INSTACE = null;
 	static open() {
@@ -29,33 +29,47 @@ class NavBar extends React.Component {
 
 	fadeIn() {
 		this.setState({ isOpen: true });
-		Animated.timing(this.animSize, {
-			toValue: 1,
-			duration: this.state.timeAnim,
-			useNativeDriver: true
-		}).start();
+		new SThread(250, "ASdasd", true).start(() => {
+			Animated.timing(this.animSize, {
+				toValue: 1,
+				duration: this.state.timeAnim,
+				useNativeDriver: true
+			}).start();
+		})
+
 	}
 
 	fadeOut() {
-
 		Animated.timing(this.animSize, {
 			toValue: 0,
 			duration: 0,
 			useNativeDriver: true
 		}).start(() => {
-			this.setState({ isOpen: false });
+			this.state.width = 0;
+			this.setState({ isOpen: false, });
 		});
 	}
 
 	renderUserData() {
 		var usuario = Model.usuario.Action.getUsuarioLog();
-		if (!usuario) return null;
-		return <SView row>
+		if (!usuario) return <SView col={"xs-12"} center height onPress={() => {
+			SNavigation.navigate("/login")
+			this.fadeOut();
+		}}>
+			<SText color={STheme.color.secondary} fontSize={18} center>{"Inicia sesión en tapeke."}</SText>
+			{/* <SText color={STheme.color.l} fontSize={12} center>{"Algunas funciones se encuentran desactivadas hasta que inicies session con un usuario."}</SText> */}
+		</SView>;
+		return <SView row col={"xs-12"}>
 			<SView col={"xs-3"} center style={{ textAlign: "right" }} height>
 				<SView style={{
 					width: 50,
 					height: 50, borderRadius: 30, overflow: "hidden", borderWidth: 1, borderColor: "#fff"
 				}}>
+					<SView style={{
+						position: "absolute"
+					}}>
+						<SIcon name='InputUser' />
+					</SView>
 					<SImage src={SSocket.api.root + "usuario/" + usuario?.key + "?date=" + new Date().getTime()} style={{
 						width: "100%",
 						height: "100%",
@@ -67,16 +81,14 @@ class NavBar extends React.Component {
 				SNavigation.navigate('perfil');
 				this.fadeOut();
 			}}>
-				<SText  
-					style={{
-						color: "#fff",
-						fontSize: 20,
-					}}>{usuario?.Nombres}</SText>
+				<SText
+					style={{ color: "#fff", fontSize: 20, }}>{usuario?.Nombres}</SText>
+				{/* style={{ color: "#fff", fontSize: 20, }}>Editar</SText> */}
 				<SView height={22} onPress={() => {
-					SNavigation.navigate('perfil')
+					SNavigation.navigate('/perfil')
 					this.fadeOut();
 				}} style={{
-					paddingLeft: 6,
+					// paddingLeft: 6,
 					alignItems: 'center',
 				}} row>
 					<SText fontSize={12} color={"#eee"} font='LondonTwo' style={{
@@ -88,7 +100,17 @@ class NavBar extends React.Component {
 		</SView>
 	}
 
-	renderIcon({ label, path, icon, onPress }) {
+	renderIcon({ label, path, icon, onPress, requireUser, noWithUser }) {
+		if (requireUser) {
+			if (!Model.usuario.Action.getKey()) {
+				return null;
+			}
+		}
+		if (noWithUser) {
+			if (Model.usuario.Action.getKey()) {
+				return null;
+			}
+		}
 		return <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => {
 			if (onPress) {
 				onPress()
@@ -98,7 +120,7 @@ class NavBar extends React.Component {
 		}}  >
 			<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
 				<SIcon fill="#666666" name={icon} width={32} height={31} />
-				<SText  style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >{label}</SText>
+				<SText style={{ paddingLeft: 5, color: "#666666", fontSize: 16 }} >{label}</SText>
 			</SView>
 			<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
 				<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
@@ -107,172 +129,50 @@ class NavBar extends React.Component {
 	}
 	getNav() {
 		if (!this.state.width) return null;
-		var destacado = require("../../Assets/svg/perfil.jpg");
-		return <SView col={"xs-9 md-6 xl-4"} height animated backgroundColor={STheme.color.background}
-			style={{
-				position: "absolute",
-				// left: this.animSize.interpolate({
-				// 	inputRange: [0, 1],
-				// 	outputRange: ["-70%", "0%"],
-				// }),
-				transform: [{
-					translateX: this.animSize.interpolate({
-						inputRange: [0, 1],
-						outputRange: [this.state.width * -0.7, 0],
-					})
-				}],
-			}}
-		>
-			<SView col={"xs-12"} backgroundColor={STheme.color.primary} width="100%" height={105} center
-				style={{ borderBottomRightRadius: 20, borderBottomLeftRadius: 20 }} >
+		return <SView col={"xs-9 md-6 xl-4"} height animated backgroundColor={STheme.color.background} style={{
+			position: "absolute",
+			transform: [{ translateX: this.animSize.interpolate({ inputRange: [0, 1], outputRange: [this.state.width * -1, 0], }) }]
+		}}>
+			<SView col={"xs-12"} backgroundColor={STheme.color.primary} width="100%" height={105} center style={{ borderBottomRightRadius: 20, borderBottomLeftRadius: 20 }} >
 				{this.renderUserData()}
 			</SView>
-			<SView height={20} border={'transparent'} />
-
-			<SScrollView2 disableHorizontal >
-
+			<SHr height={20} />
+			<SScrollView2 disableHorizontal contentContainerStyle={{ width: "100%" }} >
 				<SView col={"xs-12"} center  >
-					{this.renderIcon({ label: "Inicio", icon: "Inicio", path: "/" })}
-					{this.renderIcon({ label: "Mis Direcciones", icon: "Direccion", path: "/direcciones" })}
-					{this.renderIcon({ label: "Mis Compras", icon: "Compras", path: "/compras" })}
-					{this.renderIcon({ label: "Billetera", icon: "Mi Billetera", path: "/billetera" })}
-					{this.renderIcon({ label: "Novedades", icon: "KNotify", path: "/novedades" })}
-					{this.renderIcon({ label: "Contacto", icon: "Contacto", path: "/contacto" })}
-					{this.renderIcon({ label: "Ayuda", icon: "AppAlert", path: "/ayuda" })}
+					{this.renderIcon({ label: "Inicio", icon: "Inicio", path: "/root" })}
+					{this.renderIcon({ label: "Mis direcciones", icon: "Direccion", path: "/direccion", requireUser: true })}
+					{this.renderIcon({ label: "Mis compras", icon: "Compras", path: "/misCompras", requireUser: true })}
+					{this.renderIcon({ label: "Mis cupones", icon: "mCupon", path: "/cupones", requireUser: true })}
+					{this.renderIcon({ label: "Mi billetera", icon: "Billetera", path: "/billetera", requireUser: true })}
+					{this.renderIcon({ label: "Notificaciones", icon: "mNotification", path: "/notificaciones", requireUser: true })}
+
+					{this.renderIcon({ label: "Novedades", icon: "Novedades", path: "/novedades" })}
+					{this.renderIcon({ label: "Contactos", icon: "Contacto", path: "/contacto" })}
+					{this.renderIcon({ label: "Soporte", icon: "AppAlert", path: "/ayuda" })}
 					{this.renderIcon({
-						label: "Salir", icon: "Exit", onPress: () => {
-							Model._events.CLEAR();
+						label: "Salir", icon: "Exit", requireUser: true,
+						onPress: () => {
+							// Model._events.CLEAR();
 							Model.usuario.Action.unlogin();
-							SNavigation.navigate("/login");
+							SNavigation.reset("/");
 							this.fadeOut();
 						}
 					})}
-					<SHr height={1} color={STheme.color.black} />
-					{/* <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("/"); this.fadeOut(); }}  >
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"Inicio"} width={32} height={31} />
-							<SText  style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Inicio</SText>
-						</SView>
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView> */}
+					{this.renderIcon({ label: "Login", icon: "Exit", path: "/login", noWithUser: true })}
 
 
-
-					{/* <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("direcciones"); this.fadeOut(); }}  >
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"Direccion"} width={28} height={27} />
-							<SText  style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Mis Direcciones</SText>
-						</SView>
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView> */}
-
-					{/* <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("compras"); this.fadeOut(); }}  >
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"Compras"} width={28} height={27} />
-							<SText  style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Mis Compras</SText>
-						</SView>
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView> */}
-
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("/billetera"); this.fadeOut(); }}  >
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"Billetera"} width={28} height={27} />
-							<SText  style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Billetera</SText>
-						</SView>
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView>
-
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("novedades"); this.fadeOut(); }}  >
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"KNotify"} width={28} height={27} />
-							<SText  style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Novedades</SText>
-						</SView>
-
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView>
-
-					{/* <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("admin"); this.fadeOut(); }}  >
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"Configuracion"} width={28} height={27} />
-							<SText  style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Configuración</SText>
-						</SView>
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon stroke={"#405394"} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView> */}
-
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("consulta/contacto"), this.fadeOut(); }}  >
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"Contacto"} width={28} height={27} />
-							<SText  style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Contacto</SText>
-						</SView>
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon stroke={"#405394"} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView>
-
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("consulta/ayuda"); this.fadeOut(); }}  >
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"AppAlert"} width={28} height={27} />
-							<SText  style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Ayuda</SText>
-						</SView>
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon stroke={"#405394"} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView>
-
-					<SView col={"xs-11"} height={60} border={'transparent'} row
-						onPress={() => {
-							Model._events.CLEAR();
-							Model.usuario.Action.unlogin();
-							SNavigation.navigate("/login");
-							this.fadeOut();
-
-						}}>
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"Exit"} width={28} height={27} />
-							<SText  style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Salir</SText>
-						</SView>
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon stroke={"#405394"} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView>
-
-					{/* <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("pago_tarjeta"); this.fadeOut(); }}  >
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"AppAlert"} width={28} height={27} />
-							<SText  style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Pago tarjeta</SText>
-						</SView>
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon stroke={"#405394"} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView> */}
-
-					{/* <SView height={10} border={'transparent'} /> */}
-
+					<SHr height={20} />
 
 					<SView col={"xs-9.5 md-5.8 xl-3.8"} center style={{ bottom: 0, }}>
 						<SIcon name={"Logo"} height={70} />
 					</SView>
-
 					<SView row >
-						<SText style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonMM"}>Version 1.0.6</SText>
+						<SText style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonMM"}>Version {APPversion}</SText>
 					</SView>
-
-					<SView height={20} border={'transparent'} />
-
 				</SView>
+				<SHr height={50} />
 			</SScrollView2>
+			<SView height={20} col={"xs-12"} backgroundColor={STheme.color.accent} />
 		</SView>
 	}
 
@@ -288,9 +188,12 @@ class NavBar extends React.Component {
 				backgroundColor: STheme.color.card,
 			}}
 				onLayout={(event) => {
-					this.setState({
-						width: event.nativeEvent.layout.width
-					});
+					if (this.state.width) return;
+					this.state.width = event.nativeEvent.layout.width;
+					new SThread(100, "sadads", false).start(() => {
+						this.setState({ ...this.state });
+					})
+
 				}}
 				activeOpacity={1}
 				onPress={() => {
