@@ -5,6 +5,7 @@ import QRPedido from "./QRPedido"
 import DetallePedido from "./DetallePedido"
 import DetallePago from "./DetallePago"
 import Chat from "./Chat"
+import TiempoRestantePago from "./TiempoRestantePago"
 export default {
     Card,
     PerfilConductor,
@@ -12,5 +13,6 @@ export default {
     QRPedido,
     DetallePago,
     DetallePedido,
-    Chat
+    Chat,
+    TiempoRestantePago
 }

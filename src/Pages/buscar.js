@@ -22,7 +22,7 @@ class index extends Component {
     }
     loadData() {
         if (!this.restaurantes) {
-            this.restaurantes = Model.restaurante.Action.getAllFilters();
+            this.restaurantes = Model.restaurante.Action.getAllRecursive();
         }
         if (!this.restaurantes) return null;
         return true;

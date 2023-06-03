@@ -159,7 +159,7 @@ class index extends Component {
                         style={{fontSize: 16}}
                         center
                     >
-                        El horario de la compra de este Tapeke sera:
+                        El horario de la compra de este Tapeke será:
                     </SText>
                 </SView>
                 <SHr height={10} />

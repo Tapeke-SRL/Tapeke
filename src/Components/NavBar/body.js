@@ -133,11 +133,11 @@ export default class body extends React.Component {
 
     render() {
         // if (!this.state.width) return null;
-        var usuario = this.props?.state?.usuarioReducer?.usuarioLog;
-        if (!usuario) {
+        // var usuario = this.props?.state?.usuarioReducer?.usuarioLog;
+        // if (!usuario) {
             // SNavigation.reset('/');
-            return <SView />
-        }
+            // return <SView />
+        // }
         // if (!this.state.load) return <SLoad />
         return <>
             <SView col={"xs-12"} backgroundColor={STheme.color.primary} width="100%" height={105} center style={{ borderBottomRightRadius: 20, borderBottomLeftRadius: 20 }} >

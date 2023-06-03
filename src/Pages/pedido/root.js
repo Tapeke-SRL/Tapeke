@@ -17,17 +17,15 @@ class index extends Component {
         // })
 
         this.isRun = true;
-       this.hilo();
+        this.hilo();
     }
     componentWillUnmount() {
         this.isRun = false;
     }
 
-    
+
     hilo() {
         if (!this.isRun) return;
-        this.state.data = Model.pedido.Action.getDetalle(this.pk);
-        this.setState({ ...this.state })
         new SThread(15000, "hilo_pedido", true).start(() => {
             this.hilo();
             if (!this.isRun) return;
@@ -53,7 +51,7 @@ class index extends Component {
 
     render_data() {
         this.data = this.load_data();
-        if (!this.load_data()) return <SLoad />
+        if (!this.data) return <SLoad />
         var ITEM = _states[this.data.state];
         if (!ITEM) {
             ITEM = (props) => <SText>{"State not found " + this.data.state}</SText>
@@ -61,10 +59,7 @@ class index extends Component {
         return <ITEM data={this.data} />
     }
     render() {
-        return (<SPage hidden disableScroll >
-            {this.render_data()}
-        </SPage>
-        );
+        return this.render_data();
     }
 }
 const initStates = (state) => {

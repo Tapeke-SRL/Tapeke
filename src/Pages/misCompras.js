@@ -4,6 +4,7 @@ import { SButtom, SDate, SHr, SIcon, SImage, SList, SLoad, SNavigation, SPage, S
 import { AccentBar, BottomNavigator, Container, PButtom, Pedido, Restaurante, TopBar } from '../Components';
 import BarraCargando from '../Components/BarraCargando';
 import Model from '../Model';
+import DetalleBox2 from '../Components/Pedido/DetalleBox2';
 
 class index extends Component {
     constructor(props) {
@@ -65,12 +66,19 @@ class index extends Component {
         //     OPINAR = <SView col={"xs-6"} />
         // }
 
-        return (<SView col={"xs-12"} flex style={{ alignItems: "flex-end" }} onPress={() => {
-            console.log("Asdasd")
-        }} >
-            {/* {OPINAR} */}
-            {REPETIR}
-        </SView>);
+        return (<>
+         <SView  col={"xs-1.6"} ></SView>
+            <SView  col={"xs-10.4"} >
+                <DetalleBox2 data={obj} interline={0} padding={0} fontSize={10.5} />
+            </SView>
+            <SHr height={10} />
+            <SView col={"xs-12"} flex style={{ alignItems: "flex-end" }} onPress={() => {
+                console.log("Asdasd")
+            }} >
+                {/* {OPINAR} */}
+                <SHr height={5} />
+                {REPETIR}
+            </SView> </>);
     }
 
 
@@ -102,7 +110,7 @@ class index extends Component {
                 limit={10}
                 order={[{ key: "fecha", order: "desc", peso: 1 }]}
                 render={(obj, key) => {
-                    return <SView col={"xs-12 "} height={120} row center border={STheme.color.card} style={{ borderRadius: 8, }}
+                    return <SView col={"xs-12 "} height={160} row center border={STheme.color.card} style={{ borderRadius: 8, }}
                         onPress={() => {
                             // SNavigation.navigate("/pedido", { pk: obj.key })
 
@@ -121,14 +129,15 @@ class index extends Component {
                                 </SView>
                             </SView>
                             <SView col={"xs-8"} border={"transparent"} style={{}} >
-                                <SText fontSize={16} color={STheme.color.text} >{obj?.restaurante?.nombre}</SText>
+                                <SText fontSize={14} color={STheme.color.text} >{obj?.restaurante?.nombre}</SText>
                                 <SText fontSize={12} color={STheme.color.text} >{new SDate(obj.fecha, "yyyy-MM-dd").toString("dd de MONTH")}  {obj?.horario?.hora_inicio} - {obj?.horario?.hora_fin}</SText>
-                                <SView height={8} />
+                                {/* <SView height={8} /> */}
                                 <SText fontSize={12} color={STheme.color.primary} bold>{Model.pedido.Action.buildState(obj?.state)}</SText>
                             </SView>
                             <SView col={"xs-2"} height={40} row center style={{ alignContent: 'center', }}>
                                 <SText fontSize={18} color={STheme.color.gray} >x {obj?.cantidad}</SText>
                             </SView>
+
                         </SView>
                         <SView col={"xs-12"} center>
                             <SView col={"xs-11"} row center border={"transparent"}>

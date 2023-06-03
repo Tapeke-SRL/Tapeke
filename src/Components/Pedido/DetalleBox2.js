@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { SButtom, SDate, SHr, SIcon, SImage, SInput, SList, SMath, SNavigation, SPage, SPopup, SText, STheme, SView } from 'servisofts-component';
 
-export default class DetalleBox extends Component {
+export default class DetalleBox2 extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,7 +29,7 @@ export default class DetalleBox extends Component {
         }
         
 
-        return <SView col={"xs-12"} row center card style={{
+        return <SView col={"xs-12"} row center  style={{
             padding: this.props.padding
         }}
 
