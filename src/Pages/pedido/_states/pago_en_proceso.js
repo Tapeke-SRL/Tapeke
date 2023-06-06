@@ -121,14 +121,13 @@ export default class pago_en_proceso extends Component {
         }
         return (<SView center col={"xs-12"} flex style={{ backgroundColor: STheme.color.primary, }} >
             <SScrollView2 >
-                <SHr height={16} />
-
+                <SHr height={50} />
                 <Container>
                     <SHr height={16} />
                     <SView col={"xs-9"} border={'transparent'}  >
                         <SText fontSize={16} color='white' center >Escanea el QR para realizar el</SText>
                     </SView>
-                    <SHr height={16} />
+                    <SHr height={50} />
                     <SView col={"xs-12"} center  >
                         <SView center col={"xs-9"} colSquare backgroundColor={"#fff"} style={{ padding: 40, borderRadius: 16 }}>
                             <SImage src={`${this.getQr()}`} />

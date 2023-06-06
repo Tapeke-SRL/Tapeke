@@ -35,24 +35,23 @@ class index extends Component {
     }
 
     getBotones(obj) {
-        var OPINAR = (
-            <SView col={"xs-6"} center onPress={() => {
-                // TODO como entrar a la page de pedido entregado
-                // SNavigation.navigate('/pedido/entregado', { pk: obj.key }) 
-            }}   >
-                <SView width={120} height={24} style={{ backgroundColor: '#EEEEEE', borderRadius: 4 }} center
-                    onPress={() => {
-                        SNavigation.navigate('/pedido', { pk: obj?.key })
-                    }}
-                >
-                    <SText fontSize={12} color={"#666"}>Opinar</SText>
-                </SView>
+        // return <SText>AHSd</SText>
+
+        var OPINAR = (<SView col={"xs-6"} center onPress={() => {
+            // TODO como entrar a la page de pedido entregado
+            // SNavigation.navigate('/pedido/entregado', { pk: obj.key }) 
+        }}   >
+            <SView width={120} height={24} style={{ backgroundColor: '#EEEEEE', borderRadius: 4 }} center
+                onPress={() => {
+                    SNavigation.navigate('/pedido', { pk: obj?.key })
+                }}
+            ><SText fontSize={12} color={"#666"}>Opinar</SText>
             </SView>
+        </SView>
         )
-        var REPETIR = (
-            <SView width={120} height={24} style={{ backgroundColor: '#EEEEEE', borderRadius: 4 }} center >
-                <SText fontSize={12} color={"#666"}>Repetir</SText>
-            </SView>
+        var REPETIR = (<SView width={120} height={24} style={{ backgroundColor: '#EEEEEE', borderRadius: 4 }} center >
+            <SText fontSize={12} color={"#666"}>Repetir</SText>
+        </SView>
         )
 
         if (obj.state == "entregado" || obj.state == "cancelado" || obj.state == "timeout_pago" || obj.state == "no_recogido") {
@@ -66,19 +65,17 @@ class index extends Component {
         //     OPINAR = <SView col={"xs-6"} />
         // }
 
-        return (<>
-         <SView  col={"xs-1.6"} ></SView>
-            <SView  col={"xs-10.4"} >
+        return (<><SView col={"xs-1.6"} ></SView>
+            <SView col={"xs-10.4"} >
                 <DetalleBox2 data={obj} interline={0} padding={0} fontSize={10.5} />
             </SView>
             <SHr height={10} />
             <SView col={"xs-12"} flex style={{ alignItems: "flex-end" }} onPress={() => {
                 console.log("Asdasd")
             }} >
-                {/* {OPINAR} */}
                 <SHr height={5} />
                 {REPETIR}
-            </SView> </>);
+            </SView></>);
     }
 
 
@@ -120,15 +117,14 @@ class index extends Component {
                             }
                             SNavigation.navigate("/pedido", { pk: obj.key })
                         }}
-                    >
-                        <SHr height={9} />
-                        <SView col={"xs-12"} row center border={"transparent"}  >
-                            <SView col={"xs-2"} center border={"transparent"}  >
+                    ><SHr height={9} />
+                        <SView col={"xs-12"} row center   >
+                            <SView col={"xs-2"} center  >
                                 <SView height={40} width={40}  >
                                     <Restaurante.FotoPerfil data={obj.restaurante} style={{ width: "100%", position: "relative", resizeMode: "cover", borderRadius: 8, }} />
                                 </SView>
                             </SView>
-                            <SView col={"xs-8"} border={"transparent"} style={{}} >
+                            <SView col={"xs-8"} style={{}} >
                                 <SText fontSize={14} color={STheme.color.text} >{obj?.restaurante?.nombre}</SText>
                                 <SText fontSize={12} color={STheme.color.text} >{new SDate(obj.fecha, "yyyy-MM-dd").toString("dd de MONTH")}  {obj?.horario?.hora_inicio} - {obj?.horario?.hora_fin}</SText>
                                 {/* <SView height={8} /> */}
@@ -137,10 +133,9 @@ class index extends Component {
                             <SView col={"xs-2"} height={40} row center style={{ alignContent: 'center', }}>
                                 <SText fontSize={18} color={STheme.color.gray} >x {obj?.cantidad}</SText>
                             </SView>
-
                         </SView>
                         <SView col={"xs-12"} center>
-                            <SView col={"xs-11"} row center border={"transparent"}>
+                            <SView col={"xs-11"} row center>
                                 {this.getBotones(obj)}
                             </SView>
                         </SView>

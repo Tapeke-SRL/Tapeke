@@ -59,6 +59,7 @@ export default class TiempoRestantePago extends Component<propsType> {
             <SView row style={{
                 alignItems: "flex-end"
             }}>
+                <SView width={16}/>
                 <SText fontSize={60} bold color={STheme.color.secondary}>{this.formatSecond(minutes)}:</SText>
                 <SText fontSize={60} bold color={STheme.color.secondary}>{this.formatSecond(seconds)}</SText>
                 <SView width={16} />
