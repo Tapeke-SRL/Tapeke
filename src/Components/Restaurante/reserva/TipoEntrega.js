@@ -17,7 +17,7 @@ export default class TipoEntrega extends Component {
 
     getCostoEnvio(distancia) {
         // TODO: ricky
-        if (this.state.monto) return;
+        if (this.state?.monto) return;
         this.data_costos = Model.costo_envio.Action.getAll();
         this.incentivos = Model.incentivo.Action.getAllActivos({ key_restaurante: this.data.key });
 
@@ -29,19 +29,28 @@ export default class TipoEntrega extends Component {
             monto_incentivos += obj.monto;
         })
         var distancia_t = distancia * 1000;
-        var costo = { metro: 0, };
+        console.log(distancia_t)
+
+        var costo = { metro: 0, monto: 0 };
+        var max = { monto: 0 };
         Object.values(this.data_costos).map(obj => {
             if (distancia_t <= obj.metro && (costo.metro > obj.metro || costo.metro == 0)) {
                 costo = obj;
                 return;
             }
+            if (obj.monto >= max.monto) {
+                max = obj;
+            }
         })
+        if (costo.monto <= 0) {
+            costo = max;
+        }
 
         this.costo_envio = costo;
         this.monto_incentivos = monto_incentivos;
         let total = costo.monto + monto_incentivos;
-        if (!this.state.monto) {
-            this.setState({ monto: total })
+        if (!this.state.monto && !this.state.load) {
+            this.setState({ monto: total, load: true })
         }
     }
     renderCostoEnvio() {
@@ -55,7 +64,6 @@ export default class TipoEntrega extends Component {
 
 
     tipo_recoger(delivery, distancia) {
-
         return <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6, }}
             onPress={this.handlePress.bind(this, false)} >
             <SView col={"xs-2"} center flex>
@@ -90,7 +98,7 @@ export default class TipoEntrega extends Component {
 
     tipo_domicilio(delivery, distancia) {
         if (!delivery) return null;
-        if (!this.state.monto) {
+        if (!this?.state?.monto) {
             this.getCostoEnvio(distancia)
         }
         return <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }} onPress={this.handlePress.bind(this, true)}>
