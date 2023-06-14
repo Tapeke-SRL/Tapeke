@@ -467,11 +467,16 @@ PODS:
     - React-RCTImage
   - RNShare (7.9.1):
     - React-Core
+  - RNSound (0.11.2):
+    - React-Core
+    - RNSound/Core (= 0.11.2)
+  - RNSound/Core (0.11.2):
+    - React-Core
   - RNSVG (12.5.1):
     - React-Core
-  - servisofts-component (2.11.5):
+  - servisofts-component (2.11.9):
     - React-Core
-  - servisofts-socket (3.0.1):
+  - servisofts-socket (3.0.4):
     - CocoaAsyncSocket
     - React-Core
   - Yoga (1.14.0)
@@ -533,8 +538,9 @@ DEPENDENCIES:
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNShare (from `../node_modules/react-native-share`)
+  - RNSound (from `../node_modules/react-native-sound`)
   - RNSVG (from `../node_modules/react-native-svg`)
-  - servisofts-component (from `../../../servisofts-component/dist`)
+  - servisofts-component (from `../node_modules/servisofts-component`)
   - servisofts-socket (from `../node_modules/servisofts-socket`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -666,10 +672,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNShare:
     :path: "../node_modules/react-native-share"
+  RNSound:
+    :path: "../node_modules/react-native-sound"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   servisofts-component:
-    :path: "../../../servisofts-component/dist"
+    :path: "../node_modules/servisofts-component"
   servisofts-socket:
     :path: "../node_modules/servisofts-socket"
   Yoga:
@@ -749,11 +757,12 @@ SPEC CHECKSUMS:
   RNReanimated: e164e3683722a8fd34f116d30ea8ba010660d3f0
   RNScreens: fd535547baa4ef8aeaee1a8b1e3ffd17b8df44a4
   RNShare: a5dc3b9c53ddc73e155b8cd9a94c70c91913c43c
+  RNSound: 1081cf2576b404ca804daf4934bb644cb506ff98
   RNSVG: d7d7bc8229af3842c9cfc3a723c815a52cdd1105
-  servisofts-component: 8b2b1b83879640329116507eea47f9176b962b2f
-  servisofts-socket: 7df93adbe9f1a0b95bbf769908665a2773c9921d
+  servisofts-component: a59e8def726228e5c57e249211b2f8a22913bc9c
+  servisofts-socket: 5997e69ddd8c542bbe14d8a2eb42eb2900ea474d
   Yoga: d1fc3575b8b68891ff5ef3c276daa855e841eb32
 
-PODFILE CHECKSUM: 527d5cdf0c41f55afcdeffbf3b052fac90c8214f
+PODFILE CHECKSUM: 2ed7fae8e8f79b3c4e2bc25a9c1d4425b92c5da2
 
 COCOAPODS: 1.11.3

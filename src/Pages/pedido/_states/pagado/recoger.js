@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { SForm, SHr, SIcon, SImage, SLoad, SMath, SNavigation, SPage, SPopup, SText, STheme, SView } from 'servisofts-component';
-import { Container, PButtom, Pedido, Restaurante, TipoPago } from '../../../../Components';
+import { Container, PButtom, Pedido, Popups, Restaurante, TipoPago } from '../../../../Components';
 import SSocket from 'servisofts-socket';
 import Model from '../../../../Model';
 
@@ -16,6 +16,7 @@ export default class pendiente_pago extends Component {
     }
 
     componentDidMount() {
+        // Popups.TapekeComprado.open();
         this.getQr()
     }
 

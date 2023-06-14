@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { SButtom, SHr, SIcon, SImage, SList, SLoad, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
 import { AccentBar, BottomNavigator, Container, Popups, Restaurante, TopBar } from '../../Components';
 import Model from '../../Model';
+// import Sounds from '../../Components/Sounds';
 // import Model from '../Model';
 
 class index extends Component {
@@ -12,6 +13,9 @@ class index extends Component {
         };
     }
 
+    componentDidMount() {
+        // Sounds.play();
+    }
     navBar() {
         return <TopBar type={"menu"} title='Ayuda' />
     }
@@ -23,7 +27,7 @@ class index extends Component {
 
     item({ url, label, requireUser }) {
         return <SView col={"xs-12"} center backgroundColor={STheme.color.card} style={{ borderRadius: 16, borderLeftWidth: 20, borderColor: STheme.color.primary }} onPress={() => {
-            if(requireUser&& !Model.usuario.Action.getKey()){
+            if (requireUser && !Model.usuario.Action.getKey()) {
                 Popups.InicieSession.open();
                 return;
             }

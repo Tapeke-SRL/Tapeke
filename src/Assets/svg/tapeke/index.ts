@@ -103,6 +103,7 @@ import None, { ReactComponent as NoneW } from './none.svg';
 import Idistancia, { ReactComponent as IdistanciaW } from './idistancia.svg';
 import Ihorario, { ReactComponent as IhorarioW } from './ihorario.svg';
 import Ihand, { ReactComponent as IhandW } from './ihand.svg';
+import Check2, { ReactComponent as Check2W } from './check.svg';
 
 
 
@@ -213,6 +214,7 @@ const Assets = {
 	"Idistancia": { Native: Idistancia, Web: IdistanciaW },
 	"Ihorario": { Native: Ihorario, Web: IhorarioW },
 	"Ihand": { Native: Ihand, Web: IhandW },
+	"Check2": { Native: Check2, Web: Check2W },
 	
 
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { SForm, SHr, SIcon, SImage, SMath, SNavigation, SPage, SPopup, SScroll, SScrollView2, SText, STheme, SView, SThread } from 'servisofts-component';
-import { Contador, Container, PButtom, Restaurante, TipoPago } from '../../../Components';
+import { Contador, Container, PButtom, Popups, Restaurante, TipoPago } from '../../../Components';
 import SSocket from 'servisofts-socket';
 import SShared from '../../../Components/SShared';
 import Model from '../../../Model';
@@ -14,15 +14,19 @@ export default class pago_en_proceso extends Component {
         this.state = {
             isLoading: false,
         };
+        this.isRun = true;
     }
 
     componentDidMount() {
+        console.log(this.isRun)
         this.isRun = true;
         this.getParams();
         // this.getDetallePedido();
     }
     componentWillUnmount() {
         this.isRun = false;
+
+
     }
 
     async getParams() {
@@ -35,14 +39,13 @@ export default class pago_en_proceso extends Component {
                 // key_pedido: this.key_pedido,
             }
         ).then((resp) => {
-            // console.log(resp)
             if (resp?.data?.transaction_id) {
                 this.isRun = false;
                 this.setState({ pay_order: resp.data });
             }
         }).catch((err) => {
             if (err.error == "noIniciado") {
-                new SThread(500, "getPaymentStatus", true).start(() => {
+                new SThread(1000, "getPaymentStatus", true).start(() => {
                     if (!this.isRun) return;
                     this.getParams();
                 })
@@ -155,10 +158,17 @@ export default class pago_en_proceso extends Component {
                     </SView>
                     <SHr height={16} />
                     <SText fontSize={18} bold color={STheme.color.secondary}>En: </SText>
-                    <SHr />
+                    <SHr h={4} />
                     <TiempoRestantePago pay_order={this.state.pay_order} />
-                    <SHr />
+                    <SHr h={4} />
                     <SText col={"xs-12"} fontSize={18} center bold color={STheme.color.secondary}>Se vence el QR para este pedido.</SText>
+                    <SHr h={32} />
+                    <SView center padding={16} onPress={() => {
+                        // this.getParams()
+                        Model.pedido.Action.CLEAR();
+                    }}>
+                        <SText underLine fontSize={18} center color={STheme.color.secondary}>¿Ya pagaste? Haz click aquí!</SText>
+                    </SView>
                     <SHr h={50} />
                 </Container>
             </SScrollView2>
