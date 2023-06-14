@@ -18,14 +18,15 @@ export default {
     listo,
     timeout_pago,
     entregado,
-    "confirmando_conductor":buscando_conductor,
-    "entregado_conductor":buscando_conductor,
+    "confirmando_conductor": buscando_conductor,
+    "entregado_conductor": buscando_conductor,
     // entregado_conductor,
-    "esperando_conductor":buscando_conductor,
-    "conductor_llego":buscando_conductor,
+    "esperando_conductor": buscando_conductor,
+    "conductor_llego": conductor_llego,
     // conductor_llego,
     buscando_conductor,
-    "no_recogido":no_recogido,
-    "cancelado":cancelado,
+    "no_recogido": no_recogido,
+    "cancelado": cancelado,
+
 
 }

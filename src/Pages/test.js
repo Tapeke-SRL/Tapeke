@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FlatList } from 'react-native'
 import { SHr, SList, SPage, SText, SView } from 'servisofts-component';
 import { Container, Cupon } from '../Components';
-
+import Sounds from '../Components/Sounds';
 let CANTIDAD_DE_RENDERS = 0;
 class test extends Component {
     constructor(props) {
@@ -12,8 +12,7 @@ class test extends Component {
     }
 
     componentDidMount() {
-        this.time_end_render = new Date().getTime();
-        console.log("Termino de renderizar. ", this.time_end_render - this.time_start_render)
+        Sounds.play();
     }
     componentDidUpdate(prevProps, prevState) {
         console.log('entro al did update');

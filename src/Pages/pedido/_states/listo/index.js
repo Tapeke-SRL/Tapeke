@@ -5,7 +5,6 @@ import ListoDelivery from "./listo_delivery"
 import ListoRecoger from "./listo_recoger"
 export default class listo extends Component {
     render() {
-        console.log(this.props);
         if (!this.props.data) return <SView />
         if (!this.props.data.delivery) return <ListoRecoger {...this.props} />
         return <ListoDelivery {...this.props} />

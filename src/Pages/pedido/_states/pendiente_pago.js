@@ -207,7 +207,7 @@ export default class pendiente_pago extends Component {
                 <SView row col={"xs-11"}>
                     {this.btn({ title: "No, cancelar", onPress: () => { SPopup.close("confirmar"); }, active: false })}
                     <SView col={"xs-1"} />
-                    {this.btn({ title: "Sí, Confirmar", onPress: () => { INSTACE._form.submit() }, active: true })}
+                    {this.btn({ title: "Sí, confirmar", onPress: () => { INSTACE._form.submit() }, active: true })}
                 </SView>
             </SView>
             <SView flex />
@@ -303,10 +303,10 @@ export default class pendiente_pago extends Component {
                     }, timeOut
                 ).then((resp) => {
                     this.auxPedido = resp.data;
-                    Model.pedido.Action._dispatch({
-                        ...resp,
-                        type: "action"
-                    })
+                    // Model.pedido.Action._dispatch({
+                    //     ...resp,
+                    //     type: "action"
+                    // })
 
                     // if (this.auxPedido.state == "pendiente_pago") {
                     //     SPopup.alert("No se pudo realizar el pago.")
@@ -314,16 +314,16 @@ export default class pendiente_pago extends Component {
                     //     // Validations.set_pedido_en_curso(this.auxPedido);
                     //     // Validations.pedido_en_curso("pedido/confirmar");
                     // }
-                    switch (tipoPago.key) {
-                        case "Efectivo":
-                            Validations.set_pedido_en_curso(this.auxPedido);
-                            Validations.pedido_en_curso("pedido/confirmar");
-                            break;
-                        case "Billetera":
-                            Validations.set_pedido_en_curso(this.auxPedido);
-                            Validations.pedido_en_curso("pedido/confirmar");
-                            break;
-                    }
+                    // switch (tipoPago.key) {
+                    //     case "Efectivo":
+                    //         Validations.set_pedido_en_curso(this.auxPedido);
+                    //         Validations.pedido_en_curso("pedido/confirmar");
+                    //         break;
+                    //     case "Billetera":
+                    //         Validations.set_pedido_en_curso(this.auxPedido);
+                    //         Validations.pedido_en_curso("pedido/confirmar");
+                    //         break;
+                    // }
                     this.setState({ loading: false });
                 }).catch((err) => {
                     this.setState({ loading: false });

@@ -30,10 +30,11 @@ import intro from './intro';
 export default SPage.combinePages("/", {
   // "": test,
   "": carga,
+  test,
   "root": root,
   "carga": carga,
   ...login,
-  "buscar":buscar,
+  "buscar": buscar,
   "contacto": contacto,
   "novedades": novedades,
   "compras": compras,
