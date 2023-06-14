@@ -207,7 +207,7 @@ export default class pendiente_pago extends Component {
                 <SView row col={"xs-11"}>
                     {this.btn({ title: "No, cancelar", onPress: () => { SPopup.close("confirmar"); }, active: false })}
                     <SView col={"xs-1"} />
-                    {this.btn({ title: "Sí, Confirmar", onPress: () => { INSTACE._form.submit() }, active: true })}
+                    {this.btn({ title: "Sí, confirmar", onPress: () => { INSTACE._form.submit() }, active: true })}
                 </SView>
             </SView>
             <SView flex />
