@@ -44,7 +44,7 @@ class Direccion extends Component {
             <SView height={50} style={{ flex: 1, justifyContent: 'center', paddingLeft: 4, paddingRight: 4, maxWidth: 280, }}>
                 <SText fontSize={11} center color={STheme.color.secondary}>{this.getDireccion(miDireccion)}</SText>
                 <SHr height={4} />
-                <SText fontSize={12} center color={STheme.color.secondary}> A menos de {miDistancia == 1 ? "1" : "30"} km</SText>
+                <SText fontSize={12} center color={STheme.color.secondary}> A menos de {miDistancia} km</SText>
             </SView>
             <SView height={50} width={25}>
                 <SView style={{ top: 6 }} center><SIcon name={"Back"} height={18} fill={STheme.color.secondary} style={{ transform: [{ rotate: "-90deg" }] }} />
