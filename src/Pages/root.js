@@ -23,6 +23,7 @@ class index extends Component {
         Model.restaurante.Action.CLEAR();
         Model.pack_extra.Action.CLEAR();
         Model.favorito.Action.CLEAR();
+        Model.incentivo.Action.CLEAR();
         this.restaurantes = null;
         this.novedades = null;
 

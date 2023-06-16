@@ -49,6 +49,7 @@ class index extends Component {
         Model.pedido.Action.CLEAR();
         Model.pack_extra.Action.CLEAR();
         Model.favorito.Action.CLEAR();
+        Model.incentivo.Action.CLEAR();
         this.data = null;
     }
     load_data() {
