@@ -104,6 +104,7 @@ import Idistancia, { ReactComponent as IdistanciaW } from './idistancia.svg';
 import Ihorario, { ReactComponent as IhorarioW } from './ihorario.svg';
 import Ihand, { ReactComponent as IhandW } from './ihand.svg';
 import Check2, { ReactComponent as Check2W } from './check.svg';
+import IconSucces, { ReactComponent as IconSuccesW } from './iconSucces.svg';
 
 
 
@@ -215,6 +216,7 @@ const Assets = {
 	"Ihorario": { Native: Ihorario, Web: IhorarioW },
 	"Ihand": { Native: Ihand, Web: IhandW },
 	"Check2": { Native: Check2, Web: Check2W },
+	"IconSucces": { Native: IconSucces, Web: IconSuccesW },
 	
 
 

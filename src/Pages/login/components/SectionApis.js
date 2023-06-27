@@ -68,17 +68,17 @@ export default class SectionApis extends Component {
                 {this.separador()}
                 <SHr height={25} />
                 <SView col={"xs-12"} row>
-                    <SView col={"xs-1"} />
+                    <SView col={"xs-2"} />
                     <LoginApi type={"google"} onLogin={this.onLoginHanldler.bind(this)} >
                         {this.btnApi("IconGoogle")}
                     </LoginApi>
-                    <LoginApi type={"facebook"} onLogin={this.onLoginHanldler.bind(this)} >
+                    {/* <LoginApi type={"facebook"} onLogin={this.onLoginHanldler.bind(this)} >
                         {this.btnApi("IconFaceb")}
-                    </LoginApi>
+                    </LoginApi> */}
                     <LoginApi type={"apple"} onLogin={this.onLoginHanldler.bind(this)} >
                         {this.btnApi("Apple")}
                     </LoginApi>
-                    <SView col={"xs-1"} />
+                    <SView col={"xs-2"} />
                 </SView>
             </SView>
         );

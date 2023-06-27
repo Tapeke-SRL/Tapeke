@@ -4,6 +4,7 @@ import { SButtom, SDate, SHr, SIcon, SImage, SNavigation, SPage, SStorage, SText
 import Model from '../Model';
 
 const IS_FIRST_INSTALL_KEY = "IS_FIRST_INSTALL_KEY"
+let ESCOGIO_DIRECCION = false;
 class index extends Component {
     constructor(props) {
         super(props);
@@ -22,11 +23,17 @@ class index extends Component {
         })
         new SThread(2500, "carga_hilo", false).start(() => {
             if (!isFirst) {
-                SStorage.setItem(IS_FIRST_INSTALL_KEY, new SDate().getTime()+"");
+                SStorage.setItem(IS_FIRST_INSTALL_KEY, new SDate().getTime() + "");
                 SNavigation.replace("/intro")
                 return;
             }
+            if (!ESCOGIO_DIRECCION) {
+                ESCOGIO_DIRECCION = true;
+                SNavigation.replace("/direccion")
+                return;
+            }
             SNavigation.replace("/root")
+
         })
 
     }

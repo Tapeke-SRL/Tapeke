@@ -66,12 +66,22 @@ export default class conductor_llego extends Component {
                     <SIcon name={"MarkerLocation"} width={50} height={50} fill={"#FA790E"} />
                 </SMarker>}
             </SMapView2>
+            <SView col={"xs-12"} style={{
+                position: "absolute",
+                bottom: 0,
+                padding: 8
+            }}>
+                <SView col={"xs-12"} padding={4} backgroundColor={STheme.color.white} center>
+                    <SText center >Ref. {this.props.data?.direccion?.referencia}</SText>
+                    <SText center color={STheme.color.gray}>{this.props.data?.direccion?.direccion}</SText>
+                </SView>
+            </SView>
         </SView>
     }
 
     showCards() {
-        return <SView height={450} col={"xs-12"}>
-            <SView height={20} col={"xs-12"} backgroundColor={STheme.color.accent}/>
+        return <SView height={480} col={"xs-12"}>
+            <SView height={20} col={"xs-12"} backgroundColor={STheme.color.accent} />
             <Container>
                 <Pedido.DetallePedido data={this.props.data} />
                 <Pedido.DetallePago data={this.props.data} />

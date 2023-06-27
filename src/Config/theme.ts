@@ -4,9 +4,9 @@ import MapStyle from './mapStyle'
 const theme: SThemeThemes = {
     default: {
         barStyle: "light-content",
-        barColor: "#FF6600",
+        barColor: "#FA790E",
         text: "#000000",
-        primary: "#FF6600",
+        primary: "#FA790E",
         secondary: "#ffffff",
         info: "#DE5738",
         background: "#ffffff",
@@ -18,9 +18,9 @@ const theme: SThemeThemes = {
     },
     dark: {
         barStyle: "light-content",
-        barColor: "#FF6600",
+        barColor: "#FA790E",
         text: "#000000",
-        primary: "#FF6600",
+        primary: "#FA790E",
         secondary: "#ffffff",
         info: "#DE5738",
         background: "#ffffff",

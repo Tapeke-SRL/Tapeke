@@ -16,6 +16,7 @@ export default class TipoEntrega extends Component {
         }
     }
     handlePress(delivery) {
+        if (delivery && this.state.monto <= 0) return;
         if (this.props.onChange) this.props.onChange({ delivery: delivery ? this.state.monto : false });
         // if (this.props.parent) parent.delivery = delivery ? this.state.monto : false
         this.setState({ delivery: delivery })

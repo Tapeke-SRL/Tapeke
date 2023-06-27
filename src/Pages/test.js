@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FlatList } from 'react-native'
-import { SHr, SList, SPage, SText, SView } from 'servisofts-component';
+import { SHr, SList, SMapView, SMapView2, SPage, SText, SView } from 'servisofts-component';
 import { Container, Cupon } from '../Components';
 import Sounds from '../Components/Sounds';
 let CANTIDAD_DE_RENDERS = 0;
@@ -12,7 +12,6 @@ class test extends Component {
     }
 
     componentDidMount() {
-        Sounds.play();
     }
     componentDidUpdate(prevProps, prevState) {
         console.log('entro al did update');
@@ -22,18 +21,9 @@ class test extends Component {
         this.time_start_render = new Date().getTime();
         console.log("Inicio el renderizado")
         return <SView col={"xs-12"} height>
-            <SList
-                data={require("./test.json")}
-            // render={(a) => <SView col={"xs-12"} height={8} backgroundColor='#f0f' />} 
-            />
-            {/* <FlatList
-                ItemSeparatorComponent={(() => <SView width={8} />)}
-                data={require("./test.json")}
-                horizontal
-                renderItem={({ item }) => {
-                    return <SView width={50} height={50} backgroundColor='#f0f' />
-                }}
-            /> */}
+            <SMapView>
+
+            </SMapView>
         </SView>
     }
 }

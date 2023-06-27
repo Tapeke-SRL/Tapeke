@@ -3,10 +3,10 @@ import { typeFilters } from "."
 export const data: typeFilters = {
     showInBar: false,
     label: "Distancia",
-    select: "30",
+    select: "14",
     options: {
-        "1": { label: "menos de 1 Km", value: "1" },
-        "30": { label: "menos de 30 Km", value: "30" },
+        "4": { label: "menos de 4 Km", value: "4" },
+        "14": { label: "menos de 14 Km", value: "14" },
     }
 }
 

@@ -5,7 +5,7 @@ import { LoginType, UsuarioType } from "../types";
 GoogleSignin.configure();
 
 class LoginGoogle extends Component<LoginType> {
-    resolve(user: UsuarioType){}
+    resolve(user: UsuarioType) { }
     constructor(props) {
         super(props);
         this.state = {
@@ -34,6 +34,8 @@ class LoginGoogle extends Component<LoginType> {
                     name: userInfo.user.givenName,
                     last_name: userInfo.user.familyName,
                 });
+            } else {
+                this.reject(userInfo)
             }
         } catch (error) {
             // if (error.code === statusCodes.SIGN_IN_CANCELLED) {

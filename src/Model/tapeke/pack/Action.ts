@@ -15,13 +15,13 @@ export default class Action extends SAction {
 
         var lista = Object.values(pedidos);
         var lista_pack_extras = Object.values(pack_extras);
-        let curday = new SDate().toString("yyyy-MM-dd");
+        let curday = new SDate()
 
         Object.values(packs).map((pack: any) => {
             var pedidos_del_pack = lista.filter((obj: any) => obj.key_pack == pack.key);
-            var extras_del_pack = lista_pack_extras.filter((obj: any) => obj.key_pack == pack.key);
+            var extras_del_pack = lista_pack_extras.filter((obj: any) => obj.key_pack == pack.key );
             pack.pedidos = pedidos_del_pack;
-            var pedidos_activos = pedidos_del_pack.filter((p: any) => p.state != "pendiente_pago" && p.state != "timeout_pago");
+            var pedidos_activos = pedidos_del_pack.filter((p: any) => p.state != "pendiente_pago" && p.state != "timeout_pago" && p.state != "cancelado");
             var cantidad = 0;
             var cantidad_extra = 0;
             pedidos_activos.map((o: any) => cantidad += o.cantidad);

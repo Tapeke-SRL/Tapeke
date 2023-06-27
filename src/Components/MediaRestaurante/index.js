@@ -53,7 +53,7 @@ class MediaRestaurante extends Component {
             </SView>
             <SView col={"xs-10"}  >
                 <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>Buena calidad</SText>
-                <SText fontSize={13} font={"Roboto"} >La calidad de la comida es muy buena</SText>
+                <SText fontSize={13} font={"Roboto"} >La calidad de la comida es muy buena.</SText>
             </SView>
             <SHr height={10} />
         </SView>

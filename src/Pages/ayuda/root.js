@@ -81,6 +81,10 @@ class index extends Component {
                         label: "Chat",
                         requireUser: true
                     })}
+                    {/* {this.item({
+                        url: "/test",
+                        label: "Test",
+                    })} */}
                     <SHr height={40} />
                 </Container>
             </SPage>

@@ -26,7 +26,6 @@ export default class LoginApi extends Component<LoginApiTypes> {
         this._loginItem.onPress().then(resp => {
             this.props.onLogin(resp, this.props.type, config[this.props.type].NombreDato);
         }).catch(e => {
-            
             if (!this.props.onError) {
                 console.error(e);
                 return;

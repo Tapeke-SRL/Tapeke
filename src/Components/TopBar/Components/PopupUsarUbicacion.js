@@ -70,7 +70,7 @@ class PopupUsarUbicacion extends Component {
                 <SHr height={8} />
                 <SView col={"xs-12"} row center>
                     <SView col={"xs-6"} center onPress={() => {
-                        Model.filtros.Action.select('distancia', "1")
+                        Model.filtros.Action.select('distancia', "4")
                         SNavigation.reset("/")
                         // this.props.dispatch({ component: "direccion_usuario", type: "editarMiDistancia", data: 1 });
                         SPopup.close("ubicacion");
@@ -78,7 +78,7 @@ class PopupUsarUbicacion extends Component {
                         <SIcon name={miDistancia == 1 ? "ModoPieOn" : "ModoPieOff"} width={90} height={90} fill={STheme.color.primary} />
                         <SHr height={10} />
                         <SText color={STheme.color.text} style={{ fontSize: 14, }}>A pie</SText>
-                        <SText color={STheme.color.text} style={{ fontSize: 14, }}>menos de 1 km</SText>
+                        <SText color={STheme.color.text} style={{ fontSize: 14, }}>menos de 4 km</SText>
                     </SView>
                     <SView col={"xs-6"} center onPress={() => {
                         Model.filtros.Action.select('distancia', "14")

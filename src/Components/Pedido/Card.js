@@ -53,13 +53,13 @@ class index extends Component<PedidoCardPropsType> {
                 return 'Buscando Conductor.';
 
             case 'esperando_conductor':
-                return 'El conductor está en camino a recoger tu pedido.';
+                return 'El conductor está de ida por tu pedido.';
 
             case 'entregado_conductor':
                 return 'Entregado al Conductor.';
 
             case 'conductor_llego':
-                return 'El Conductor LLego.';
+                return 'El conductor llegó.';
 
             case 'entregado':
                 return 'Entregado.'
