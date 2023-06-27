@@ -38,8 +38,8 @@ export default class Action extends SAction {
 
             obj.distancia = "";
             if (ubicacion_usuario) {
-                obj.distancia = getDistance(ubicacion_usuario.latitude, ubicacion_usuario.longitude, obj.latitude, obj.longitude);
-                obj.distancia = (parseFloat(obj.distancia ?? 0) / 1000).toFixed(1)
+                obj.distancia_metros = getDistance(ubicacion_usuario.latitude, ubicacion_usuario.longitude, obj.latitude, obj.longitude);
+                obj.distancia = (parseFloat(obj.distancia_metros ?? 0) / 1000).toFixed(1)
             }
             restaurantes[obj.key].proximo_horario = Model.horario.Action.getByKeyRestauranteProximo(obj.key);
         })

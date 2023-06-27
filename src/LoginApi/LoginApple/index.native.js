@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 import { SPopup, SStorage, SView } from 'servisofts-component';
 import { appleAuth } from '@invertase/react-native-apple-authentication';
 import { LoginType } from "../types";
-
+import jwtDecode from 'jwt-decode';
 class LoginApple extends Component<LoginType> {
 
 
@@ -44,27 +44,43 @@ class LoginApple extends Component<LoginType> {
         // use credentialState response to ensure the user is authenticated
         if (credentialState === appleAuth.State.AUTHORIZED) {
             // user is authenticated
-            const { email, user } = appleAuthRequestResponse;
+            const { email, user, identityToken } = appleAuthRequestResponse;
+            var decoded = jwtDecode(identityToken);
+
             if (email) {
                 this.state.sessions[user] = appleAuthRequestResponse
                 this.save();
-
             }
-            if (this.props.onLogin) {
+            if (!this.state.sessions[user]) {
+                this.state.sessions[user] = appleAuthRequestResponse
+            }
+            if (this.resolve) {
                 var usuario = this.state.sessions[user];
-                this.props.onLogin({
+                this.resolve({
                     id: user,
-                    email: usuario?.email,
+                    email: usuario?.email ?? decoded.email,
                     name: usuario?.fullName?.givenName,
                     last_name: usuario?.fullName?.familyName
                 });
             }
+        } else {
+            if (this.reject) this.reject({ error: "Not quiso loguear" })
         }
+
     };
+
+    onPress() {
+        return new Promise((resolve, reject) => {
+            this.resolve = resolve;
+            this.reject = reject;
+            this.signIn()
+            // this.renderProps.onClick();
+        })
+    }
     render() {
 
         return (
-            <SView onPress={this.signIn.bind(this)}>
+            <SView >
                 {this.props.children}
             </SView>
         );

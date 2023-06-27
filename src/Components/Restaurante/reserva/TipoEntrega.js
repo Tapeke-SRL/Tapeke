@@ -9,7 +9,14 @@ export default class TipoEntrega extends Component {
         this.state = {
         };
     }
+    componentDidMount() {
+        if (this.props?.data?.key) {
+            Model.incentivo.Action.getAllActivos({ key_restaurante: this.props?.data?.key }, true);
+            this.setState({ monto: 0, load: false })
+        }
+    }
     handlePress(delivery) {
+        if (delivery && this.state.monto <= 0) return;
         if (this.props.onChange) this.props.onChange({ delivery: delivery ? this.state.monto : false });
         // if (this.props.parent) parent.delivery = delivery ? this.state.monto : false
         this.setState({ delivery: delivery })
@@ -17,7 +24,6 @@ export default class TipoEntrega extends Component {
 
     getCostoEnvio(distancia) {
         // TODO: ricky
-        if (this.state?.monto) return;
         this.data_costos = Model.costo_envio.Action.getAll();
         this.incentivos = Model.incentivo.Action.getAllActivos({ key_restaurante: this.data.key });
 
@@ -28,7 +34,7 @@ export default class TipoEntrega extends Component {
         Object.values(this.incentivos).map((obj) => {
             monto_incentivos += obj.monto;
         })
-        var distancia_t = distancia * 1000;
+        var distancia_t = distancia;
         console.log(distancia_t)
 
         var costo = { metro: 0, monto: 0 };
@@ -124,16 +130,15 @@ export default class TipoEntrega extends Component {
 
         // }
         let delivery = this.data.delivery;
-        let distancia = this.data.distancia;
         return (
             <SView backgroundColor={STheme.color.background} col={"xs-12"} center>
                 <SHr height={8} />
                 <SView col={"xs-11"} style={{ opacity: delivery == true ? 1 : 0.3 }} >
                     <SText fontSize={18} style={{ fontWeight: "bold" }}>Tipo de entrega</SText>
                     <SHr height={15} />
-                    {this.tipo_recoger(delivery, distancia)}
+                    {this.tipo_recoger(delivery, this.data.distancia)}
                     <SHr height={15} />
-                    {this.tipo_domicilio(delivery, distancia)}
+                    {this.tipo_domicilio(delivery, this.data.distancia_metros)}
                     <SHr height={15} />
                 </SView>
             </SView>

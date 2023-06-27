@@ -59,15 +59,17 @@ class LoginFacebook extends Component<LoginType> {
             // if (Platform.OS === "android") {
             //     LoginManager.setLoginBehavior("web_only")
             // }
+            // LoginManager.logInWithReadPermissions(['public_profile']).then(
             LoginManager.logInWithPermissions(['public_profile']).then(
                 login => {
+                    console.log("ASdasd")
                     if (login.isCancelled) {
                         this.reject(login);
                     } else {
-                        AccessToken.getCurrentAccessToken().then(data => {
-                            const accessToken = data.accessToken.toString();
-                            this.getInfoFromToken(accessToken);
-                        });
+                        // AccessToken.getCurrentAccessToken().then(data => {
+                        //     const accessToken = data.accessToken.toString();
+                        //     this.getInfoFromToken(accessToken);
+                        // });
                     }
                 }
             ).catch(error => {

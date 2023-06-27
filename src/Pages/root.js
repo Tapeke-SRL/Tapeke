@@ -23,6 +23,7 @@ class index extends Component {
         Model.restaurante.Action.CLEAR();
         Model.pack_extra.Action.CLEAR();
         Model.favorito.Action.CLEAR();
+        Model.incentivo.Action.CLEAR();
         this.restaurantes = null;
         this.novedades = null;
 
@@ -39,9 +40,9 @@ class index extends Component {
         }
         // if (!this.restaurantes) return null;
         if (this.restaurantes) {
-            if (Object.keys(this.restaurantes).length === 0) {
-                SPopup.alert("No hay restaurantes para mostrar")
-            }
+            // if (Object.keys(this.restaurantes).length === 0) {
+            //     SPopup.alert("No hay restaurantes para mostrar")
+            // }
         } else {
             return null;
         }

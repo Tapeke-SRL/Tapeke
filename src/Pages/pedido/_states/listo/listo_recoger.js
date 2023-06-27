@@ -26,10 +26,10 @@ export default class index extends Component {
                 "framework": "Rounded",
                 "colorImageBackground": "#ffffff",
                 "header": "Leaf",
-                "colorHeader": "#FA790E",
+                "colorHeader": "#000000",
                 "body": "Default",
                 "content": content,
-                "colorBody": "#FA790E"
+                "colorBody": "#000000"
             }
         }).then((resp) => {
             if (resp.estado != "exito") return;
@@ -71,6 +71,7 @@ export default class index extends Component {
                             {this.getImage()}
 
                         </SView>
+                        <SHr height={15} />
                         <SText fontSize={18} font={"Roboto"} color={STheme.color.primary} bold center >Hora de entrega: {this.props.data?.horario?.hora_inicio} - {this.props.data?.horario?.hora_fin}</SText>
                         <SHr height={70} />
                     </SView>

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
     SButtom,
     SHr,
@@ -36,7 +36,7 @@ class index extends Component {
     }
     componentDidMount() {
         new SThread(500, 'anykey', true).start(() => {
-            this.setState({loading_page: true});
+            this.setState({ loading_page: true });
         });
     }
     load_data() {
@@ -82,7 +82,7 @@ class index extends Component {
         var total = this.ref_totales.getValue();
         // console.log(val)
         // return;
-        this.setState({loading: true});
+        this.setState({ loading: true });
 
         var resquest = {
             key_usuario: Model.usuario.Action.getKey(),
@@ -100,19 +100,19 @@ class index extends Component {
         Model.pedido.Action.registro(resquest)
             .then(resp => {
                 console.log(resp);
-                SNavigation.navigate('/pedido', {pk: resp.data.key});
+                SNavigation.navigate('/pedido', { pk: resp.data.key });
                 this.state.key_pedido = SUuid();
-                this.setState({loading: false});
+                this.setState({ loading: false });
             })
             .catch(e => {
                 if (e.error == 'agotado') {
                     Popups.TapekesAgotados.open();
                 }
-                this.setState({loading: false});
+                this.setState({ loading: false });
             });
     }
 
-    btn = ({title, onPress, active}) => {
+    btn = ({ title, onPress, active }) => {
         return (
             <SView
                 col={'xs-5.5'}
@@ -120,7 +120,7 @@ class index extends Component {
                 center
                 border={STheme.color.primary}
                 backgroundColor={active ? STheme.color.primary : ''}
-                style={{borderRadius: 8}}
+                style={{ borderRadius: 8 }}
                 onPress={onPress}
             >
                 <SText
@@ -156,7 +156,7 @@ class index extends Component {
                 <SView col={'xs-10'} center>
                     <SText
                         color={STheme.color.darkGray}
-                        style={{fontSize: 16}}
+                        style={{ fontSize: 16 }}
                         center
                     >
                         El horario de la compra de este Tapeke será:
@@ -167,7 +167,7 @@ class index extends Component {
                     <SView
                         col
                         row
-                        style={{borderColor: '#FA790E', borderBottomWidth: 2}}
+                        style={{ borderColor: '#FA790E', borderBottomWidth: 2 }}
                     />
                     <SHr />
                     <SView col={'xs-8'} center>
@@ -179,7 +179,7 @@ class index extends Component {
                             {dato?.proximo_horario?.extraData?.hora_fin}
                         </SText>
                     </SView>
-                    <SView col={'xs-3'} style={{alignItems: 'flex-start'}}>
+                    <SView col={'xs-3'} style={{ alignItems: 'flex-start' }}>
                         <SIcon
                             name='Ihand'
                             width={60}
@@ -191,12 +191,12 @@ class index extends Component {
                     <SView
                         col
                         row
-                        style={{borderColor: '#FA790E', borderBottomWidth: 2}}
+                        style={{ borderColor: '#FA790E', borderBottomWidth: 2 }}
                     />
                     <SHr />
                 </SView>
                 <SView flex />
-                <SView col={'xs-12'} style={{alignItems: 'center'}}>
+                <SView col={'xs-12'} style={{ alignItems: 'center' }}>
                     <SView row col={'xs-11'} center>
                         <SHr height={10} />
                         {this.btn({
@@ -219,7 +219,7 @@ class index extends Component {
         if (!this.load_data()) return <SLoad />;
 
         if (this.data && this.state.alerta) {
-            this.setState({alerta: false});
+            this.setState({ alerta: false });
             SPopup.open({
                 key: 'alerta',
                 content: this.popupAlerta(this.data),
@@ -263,12 +263,14 @@ class index extends Component {
     }
     render() {
         return (
-            <SPage header={<AccentBar />}>
+            <SPage header={<AccentBar />} onRefresh={(resolve) => {
+                // Model.incentivo.Action.CLEAR();
+            }}>
                 <SView
                     backgroundColor={STheme.color.card}
                     col={'xs-12'}
                     height
-                    style={{position: 'absolute'}}
+                    style={{ position: 'absolute' }}
                 ></SView>
                 <SView col={'xs-12'} center>
                     {this.render_data()}
@@ -278,7 +280,7 @@ class index extends Component {
     }
 }
 const initStates = state => {
-    return {state};
+    return { state };
 };
 export default connect(initStates)(index);
 // export default index;

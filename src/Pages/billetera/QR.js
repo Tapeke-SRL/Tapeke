@@ -17,6 +17,23 @@ class QR extends Component {
     success() {
         SNavigation.goBack();
     }
+    popupDescargaQr() {
+        return <>
+            <SView width={362} center row style={{ borderRadius: 32, overflow: "hidden" }} withoutFeedback backgroundColor={STheme.color.background}   >
+                <SHr height={40} />
+                <SView col={"xs-11"} center row>
+                    <SView col={"xs-12"} center >
+                        <SIcon width={100} name='IconSucces' fill='#99CC00'></SIcon>
+                    </SView>
+                    <SHr height={20} />
+                    <SView col={"xs-12"} center>
+                        <SText fontSize={14} color={STheme.color.text}  >QR descargada con éxito.</SText>
+                    </SView>
+                    <SHr height={40} />
+                </SView>
+            </SView>
+        </>
+    }
     render() {
         const { transaction_id, image_data, checkout_amount } = this.data;
         return (
@@ -44,7 +61,8 @@ class QR extends Component {
                             </SView>
                             <SView flex center height={60} >
                                 <SView height={60} colSquare center style={{ backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.primary, borderWidth: 2, padding: 8 }} onPress={() => {
-                                    SPopup.alert("QR descargada con exito");
+                                    // SPopup.alert("QR descargada con éxito");
+                                    SPopup.open({ content: this.popupDescargaQr(), key: "descargaqr" });
                                     SShared.saveB64("data:image/jpeg;base64," + image_data)
                                 }}>
                                     <SIcon name={"ImgSave"} />

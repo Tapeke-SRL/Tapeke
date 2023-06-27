@@ -37,7 +37,7 @@ export default class listo extends Component {
                 <SView col={"xs-9"} center>
                     <SText bold fontSize={22}>Tapeke cancelado</SText>
                     <SHr height={15} />
-                    <SText bold fontSize={16} center>Lo sentimos, tu tapeke fue cancelado.</SText>
+                    <SText bold fontSize={16} center>Lo sentimos, tu Tapeke fue cancelado, si tu pedido era con delivery y pagaste con algún método de pago online se te devolvió el dinero a tu Billetera Tapeke.</SText>
                 </SView>
                 <SView col={"xs-12"}  row center>
                     <SHr height={40} />

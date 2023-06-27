@@ -25,7 +25,7 @@ class index extends Component<BotonesEstadoPropsType> {
         return <SView col={"xs-3.5"} style={{ borderBottomWidth: 3, }} border={'transparent'} center>
             <SHr height={8} />
 
-            {(chat == false) ? <Pedido.Chat data={this.props.data} /> : null}
+
             <SView width={48} height={48}>
                 <SIcon name={icon} fill={STheme.color.primary} />
             </SView>
@@ -58,7 +58,7 @@ class index extends Component<BotonesEstadoPropsType> {
             delivery = true;
         }
         return (<>
-            <SView col={"xs-12  "} height={90} row center >
+            <SView col={"xs-12  "} height={100} row center >
                 {/* <SHr width={10} height={5} color={STheme.color.text} /> */}
                 {this.render_buttom({ label: "Confirmación", icon: "PedConfirmacion", loading: !confirmado, complete: confirmado })}
                 <SView width={5} height />
@@ -162,11 +162,13 @@ class index extends Component<BotonesEstadoPropsType> {
                 <SView height={56} col={"xs-12"} center>
                     <HoraEstimada {...this.props} />
                 </SView>
+                <Pedido.Chat data={this.props.data} size={35} />
                 {/* <SText col={"xs-12"} color={STheme.color.text} style={{ fontSize: 40 }} bold center>{this.props.data.horario.hora_inicio} - {this.props.data.horario.hora_fin}</SText> */}
                 {/* <SText col={"xs-12"} color={STheme.color.lightGray} style={{ fontSize: 12 }} bold center>{this.props.data.state}</SText> */}
                 {/* <SText col={"xs-12"} color={STheme.color.text} style={{ fontSize: 12 }} bold center>Esperando la hora de comer.</SText> */}
                 {this.getBotones()}
                 <SHr />
+
             </SView >
         </SView >
     }

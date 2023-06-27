@@ -365,7 +365,7 @@ class index extends Component {
                     </SView>
                     <SView col={"xs-11"} style={{}} >
                         <SText color={STheme.color.text} fontSize={14}>
-                            Un repartidor puede recibir dos pedidos para ser entregados en ubicaciones cercanas, en estos casos el repartidor sigue la ruta para ambas paradas y el tiempo estimado de entrega también fue calculado tomando en cuenta las dos entregas, así que no te preocupes el repartidor llegara a tu ubicación en el intervalo de tiempo estimado.
+                            Un repartidor puede recibir dos pedidos para ser entregados en ubicaciones cercanas, en estos casos el repartidor sigue la ruta para ambas paradas y el tiempo estimado de entrega también fue calculado tomando en cuenta las dos entregas, así que no te preocupes el repartidor llegará a tu ubicación en el intervalo de tiempo estimado.
                         </SText>
                     </SView>
                 </SView>
