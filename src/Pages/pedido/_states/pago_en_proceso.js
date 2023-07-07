@@ -101,8 +101,8 @@ export default class pago_en_proceso extends Component {
             <SView width={362} center row style={{ borderRadius: 32, overflow: "hidden" }} withoutFeedback backgroundColor={STheme.color.background}   >
                 <SHr height={40} />
                 <SView col={"xs-11"} center row>
-                    <SView col={"xs-12"} center >
-                        <SIcon width={100} name='IconSucces' fill='#99CC00'></SIcon>
+                    <SView col={"xs-12"} center height={100} >
+                        <SIcon width={100} name='DownloadSVG' fill='#99CC00'></SIcon>
                     </SView>
                     <SHr height={20} />
                     <SView col={"xs-12"} center>

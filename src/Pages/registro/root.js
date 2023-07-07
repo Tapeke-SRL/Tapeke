@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SForm, SHr, SNavigation, SPage, SPopup, SText, SView } from 'servisofts-component';
+import { SForm, SHr, SLoad, SNavigation, SPage, SPopup, SText, SThread, SView } from 'servisofts-component';
 import { AccentBar } from '../../Components';
 import Container from '../../Components/Container';
 import Model from '../../Model';
 import BtnSend from './components/BtnSend';
 import Header from './components/Header';
+import SectionApis from '../login/components/SectionApis';
 
 class root extends Component {
     constructor(props) {
@@ -19,6 +20,14 @@ class root extends Component {
         var defaultData = {
             ...this.params,
         };
+        if (this.state.reload) {
+            this.state.reload = false;
+            new SThread(200, "reload_login", true).start(() => {
+                this.params = SNavigation.getAllParams();
+                this.setState({ reload: false })
+            })
+            return <SLoad />
+        }
         return (
             <SPage footer={<AccentBar />} >
                 <Header title={"Bienvenido a Tapeke"} />
@@ -40,7 +49,6 @@ class root extends Component {
                             Correo: { placeholder: "Correo", type: "email", isRequired: true, defaultValue: defaultData.Correo },
                         }}
                         onSubmit={(values) => {
-
                             Model.usuario.Action.validateRegistro({
                                 ...values,
                                 Telefono: "+591 xxxxxxx"
@@ -60,11 +68,12 @@ class root extends Component {
                                 SPopup.alert("Ya existe un usuario con este correo.")
                             })
 
-
-
-
                         }}
                     />
+                    <SHr height={20} />
+                    <SectionApis label={"o Registrate con"} onChange={() => {
+                        this.state.reload = true;
+                    }} />
                     <SHr height={20} />
                     <BtnSend onPress={() => this.form.submit()}>{"CONTINUAR"}</BtnSend>
                     <SHr height={30} />

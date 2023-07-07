@@ -33,7 +33,7 @@
     "react-native": "0.64.4",
     "react-native-compressor": "1.6.1",
     "react-native-document-picker": "^7.1.0",
-    "react-native-fbsdk": "3.0.0",
+    "react-native-fbsdk-next": "^5.0.0",
     "react-native-fetch-blob": "0.10.8",
     "react-native-file-viewer": "^2.1.4",
     "react-native-fs": "2.20.0",

@@ -24,7 +24,7 @@ target 'tapeke_app' do
   pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
 #  pod 'RNFBMessaging', :path => '../node_modules/@react-native-firebase/messaging'
 
-  pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+  pod 'react-native-fbsdk-next', :path => '../node_modules/react-native-fbsdk-next'
 
   pod 'RNSound', :path => '../node_modules/react-native-sound'
 
