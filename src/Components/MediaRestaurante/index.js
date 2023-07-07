@@ -27,7 +27,7 @@ class MediaRestaurante extends Component {
             </SView>
             <SView col={"xs-10"}  >
                 <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>A muchos les gusta este pack</SText>
-                <SText fontSize={13} font={"Roboto"} >El 91% han putuado {parseFloat(this.dataRestaurante.star_media).toFixed(0)} estrellas sobre 5.</SText>
+                <SText fontSize={13} font={"Roboto"} >En promedio han puntuado {parseFloat(this.dataRestaurante.star_media).toFixed(0)} estrellas sobre 5.</SText>
             </SView>
             <SHr height={10} />
         </SView>

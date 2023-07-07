@@ -19,12 +19,23 @@ class registrando extends Component {
             data: this.params
         }).then((resp) => {
             var usuario = resp.data;
-            Model.usuario.Action.loginByKey({
-                usuario: usuario.Correo,
-                password: usuario.Password
-            }).then(resp => {
+            console.log(usuario);
+            let toLogin = {
+                usuario: ""
+            }
+            if (usuario.gmail_key) {
+                toLogin.usuario = usuario.gmail_key
+            } else if (usuario.facebook_key) {
+                toLogin.usuario = usuario.facebook_key
+            } else if (usuario.apple_key) {
+                toLogin.usuario = usuario.apple_key
+            } else {
+                toLogin.usuario = usuario.Correo
+                toLogin.password = usuario.Password
+            }
+            Model.usuario.Action.loginByKey(toLogin).then(resp => {
                 SNavigation.reset("/");
-            }).catch(e=>{
+            }).catch(e => {
                 SPopup.alert("Error al iniciar con el nuevo usuario");
                 SNavigation.reset("/");
             })

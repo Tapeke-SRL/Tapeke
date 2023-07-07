@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import { Platform } from 'react-native';
 import { SView } from 'servisofts-component';
 import {
+    Settings,
     AccessToken,
     LoginManager,
     GraphRequest,
     GraphRequestManager,
-} from 'react-native-fbsdk';
+    LoginButton
+    // LoginManager
+} from 'react-native-fbsdk-next';
 
 import { LoginType, UsuarioType } from "../types";
+
+Settings.initializeSDK();
 
 class LoginFacebook extends Component<LoginType> {
 
@@ -56,9 +61,10 @@ class LoginFacebook extends Component<LoginType> {
     };
     signIn = async () => {
         try {
-            // if (Platform.OS === "android") {
-            //     LoginManager.setLoginBehavior("web_only")
-            // }
+
+            if (Platform.OS === "android") {
+                LoginManager.setLoginBehavior("web_only")
+            }
             // LoginManager.logInWithReadPermissions(['public_profile']).then(
             LoginManager.logInWithPermissions(['public_profile']).then(
                 login => {
@@ -66,13 +72,14 @@ class LoginFacebook extends Component<LoginType> {
                     if (login.isCancelled) {
                         this.reject(login);
                     } else {
-                        // AccessToken.getCurrentAccessToken().then(data => {
-                        //     const accessToken = data.accessToken.toString();
-                        //     this.getInfoFromToken(accessToken);
-                        // });
+                        AccessToken.getCurrentAccessToken().then(data => {
+                            const accessToken = data.accessToken.toString();
+                            this.getInfoFromToken(accessToken);
+                        });
                     }
                 }
             ).catch(error => {
+                console.error(error)
                 this.reject(error);
             })
         } catch (e) {
@@ -80,6 +87,7 @@ class LoginFacebook extends Component<LoginType> {
         }
     };
     render() {
+
         return this.props.children;
     }
 }

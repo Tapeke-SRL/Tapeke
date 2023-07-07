@@ -95,6 +95,7 @@ import Soporte, { ReactComponent as SoporteW } from './svg/soporte.svg';
 import mNotification, { ReactComponent as mNotificationW } from './svg/mNotification.svg';
 import TimeOut, { ReactComponent as TimeOutW } from './svg/timeOut.svg';
 import Cancelado, { ReactComponent as CanceladoW } from './svg/cancelado.svg';
+import DownloadSVG, { ReactComponent as DownloadSVGW } from './svg/DownloadSVG.svg';
 
 const Assets: SAssets = {
     svg: {
@@ -182,6 +183,7 @@ const Assets: SAssets = {
         "mNotification": { Native: mNotification, Web: mNotificationW },
         "TimeOut": { Native: TimeOut, Web: TimeOutW },
         "Cancelado": { Native: Cancelado, Web: CanceladoW },
+        "DownloadSVG": { Native: DownloadSVG, Web: DownloadSVGW },
 
         ...Tapeke,
         ...Pedido,

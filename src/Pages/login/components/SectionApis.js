@@ -19,17 +19,20 @@ export default class SectionApis extends Component {
             //     estado: "exito",
             //     data: resp.data,
             // })
-            console.log("sadkasdsadas das dakljdaksd");
             SNavigation.reset("/");
         }).catch(e => {
             if (e?.error == "error_usuario") {
-                SNavigation.navigate("/registro", {
+                const val = {
                     type: type,
                     Nombres: user.name,
                     Apellidos: user.last_name,
                     Correo: user.email,
                     [NombreDato]: user.id,
-                });
+                }
+                if (this.props.onChange) {
+                    this.props.onChange(val)
+                }
+                SNavigation.navigate("/registro", val);
                 return;
             }
             console.error(e);
@@ -43,7 +46,7 @@ export default class SectionApis extends Component {
                 <SHr color={STheme.color.lightGray} height={1.5} ></SHr>
             </SView>
             <SView col={"xs-6"} height center>
-                <SText fontSize={14} color={STheme.color.darkGray} font={"LondonMM"}> o Iniciar sesión con  </SText>
+                <SText fontSize={14} color={STheme.color.darkGray} font={"LondonMM"}>{this.props.label ?? "o Iniciar sesión con"}</SText>
             </SView>
             <SView col={"xs-3"} height center>
                 <SHr color={STheme.color.lightGray} height={1.5} ></SHr>
@@ -72,9 +75,9 @@ export default class SectionApis extends Component {
                     <LoginApi type={"google"} onLogin={this.onLoginHanldler.bind(this)} >
                         {this.btnApi("IconGoogle")}
                     </LoginApi>
-                    {/* <LoginApi type={"facebook"} onLogin={this.onLoginHanldler.bind(this)} >
+                    <LoginApi type={"facebook"} onLogin={this.onLoginHanldler.bind(this)} >
                         {this.btnApi("IconFaceb")}
-                    </LoginApi> */}
+                    </LoginApi>
                     <LoginApi type={"apple"} onLogin={this.onLoginHanldler.bind(this)} >
                         {this.btnApi("Apple")}
                     </LoginApi>

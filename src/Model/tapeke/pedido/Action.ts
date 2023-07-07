@@ -122,10 +122,12 @@ export default class Action extends SAction {
                 "framework": "Rounded",
                 "colorImageBackground": "#ffffff",
                 "header": "Leaf",
-                "colorHeader": "#FA790E",
+                // "colorHeader": "#FA790E",
+                "colorHeader": "#000000",
                 "body": "Default",
                 "content": content,
-                "colorBody": "#FA790E"
+                // "colorBody": "#FA790E"
+                "colorBody": "#000000"
             }
         })
     }

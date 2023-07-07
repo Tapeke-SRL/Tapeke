@@ -10,6 +10,10 @@ PODS:
     - React-Core
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
+  - FBAEMKit (11.2.1):
+    - FBAEMKit/AEM (= 11.2.1)
+  - FBAEMKit/AEM (11.2.1):
+    - FBSDKCoreKit_Basics (~> 11.2.1)
   - FBLazyVector (0.64.4)
   - FBReactNativeSpec (0.64.4):
     - RCT-Folly (= 2020.01.13.00)
@@ -18,20 +22,24 @@ PODS:
     - React-Core (= 0.64.4)
     - React-jsi (= 0.64.4)
     - ReactCommon/turbomodule/core (= 0.64.4)
-  - FBSDKCoreKit (8.2.0):
-    - FBSDKCoreKit/Basics (= 8.2.0)
-    - FBSDKCoreKit/Core (= 8.2.0)
-  - FBSDKCoreKit/Basics (8.2.0)
-  - FBSDKCoreKit/Core (8.2.0):
-    - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (8.2.0):
-    - FBSDKLoginKit/Login (= 8.2.0)
-  - FBSDKLoginKit/Login (8.2.0):
-    - FBSDKCoreKit (~> 8.2.0)
-  - FBSDKShareKit (8.2.0):
-    - FBSDKShareKit/Share (= 8.2.0)
-  - FBSDKShareKit/Share (8.2.0):
-    - FBSDKCoreKit (~> 8.2.0)
+  - FBSDKCoreKit (11.2.1):
+    - FBSDKCoreKit/Core (= 11.2.1)
+  - FBSDKCoreKit/Core (11.2.1):
+    - FBAEMKit (~> 11.2.1)
+    - FBSDKCoreKit_Basics (~> 11.2.1)
+  - FBSDKCoreKit_Basics (11.2.1):
+    - FBSDKCoreKit_Basics/Basics (= 11.2.1)
+  - FBSDKCoreKit_Basics/Basics (11.2.1)
+  - FBSDKLoginKit (11.2.1):
+    - FBSDKLoginKit/Login (= 11.2.1)
+  - FBSDKLoginKit/Login (11.2.1):
+    - FBSDKCoreKit (~> 11.2.1)
+    - FBSDKCoreKit_Basics (~> 11.2.1)
+  - FBSDKShareKit (11.2.1):
+    - FBSDKShareKit/Share (= 11.2.1)
+  - FBSDKShareKit/Share (11.2.1):
+    - FBSDKCoreKit (~> 11.2.1)
+    - FBSDKCoreKit_Basics (~> 11.2.1)
   - Firebase/CoreOnly (8.15.0):
     - FirebaseCore (= 8.15.0)
   - Firebase/Messaging (8.15.0):
@@ -319,20 +327,20 @@ PODS:
     - React-Core
   - react-native-document-picker (7.1.3):
     - React-Core
-  - react-native-fbsdk (3.0.0):
-    - React
-    - react-native-fbsdk/Core (= 3.0.0)
-    - react-native-fbsdk/Login (= 3.0.0)
-    - react-native-fbsdk/Share (= 3.0.0)
-  - react-native-fbsdk/Core (3.0.0):
-    - FBSDKCoreKit (~> 8.1)
-    - React
-  - react-native-fbsdk/Login (3.0.0):
-    - FBSDKLoginKit (~> 8.1)
-    - React
-  - react-native-fbsdk/Share (3.0.0):
-    - FBSDKShareKit (~> 8.1)
-    - React
+  - react-native-fbsdk-next (5.0.0):
+    - React-Core
+    - react-native-fbsdk-next/Core (= 5.0.0)
+    - react-native-fbsdk-next/Login (= 5.0.0)
+    - react-native-fbsdk-next/Share (= 5.0.0)
+  - react-native-fbsdk-next/Core (5.0.0):
+    - FBSDKCoreKit (~> 11.2.1)
+    - React-Core
+  - react-native-fbsdk-next/Login (5.0.0):
+    - FBSDKLoginKit (~> 11.2.1)
+    - React-Core
+  - react-native-fbsdk-next/Share (5.0.0):
+    - FBSDKShareKit (~> 11.2.1)
+    - React-Core
   - react-native-fetch-blob (0.10.6):
     - React-Core
   - react-native-geolocation (2.1.0):
@@ -474,7 +482,7 @@ PODS:
     - React-Core
   - RNSVG (12.5.1):
     - React-Core
-  - servisofts-component (2.11.9):
+  - servisofts-component (2.11.14):
     - React-Core
   - servisofts-socket (3.0.4):
     - CocoaAsyncSocket
@@ -506,7 +514,7 @@ DEPENDENCIES:
   - "react-native-cameraroll (from `../node_modules/@react-native-community/cameraroll`)"
   - react-native-compressor (from `../node_modules/react-native-compressor`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
-  - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
+  - react-native-fbsdk-next (from `../node_modules/react-native-fbsdk-next`)
   - react-native-fetch-blob (from `../node_modules/react-native-fetch-blob`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-google-maps (from `../node_modules/react-native-maps`)
@@ -549,7 +557,9 @@ SPEC REPOS:
     - AppAuth
     - boost-for-react-native
     - CocoaAsyncSocket
+    - FBAEMKit
     - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
     - FBSDKLoginKit
     - FBSDKShareKit
     - Firebase
@@ -608,8 +618,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-compressor"
   react-native-document-picker:
     :path: "../node_modules/react-native-document-picker"
-  react-native-fbsdk:
-    :path: "../node_modules/react-native-fbsdk"
+  react-native-fbsdk-next:
+    :path: "../node_modules/react-native-fbsdk-next"
   react-native-fetch-blob:
     :path: "../node_modules/react-native-fetch-blob"
   react-native-geolocation:
@@ -689,11 +699,13 @@ SPEC CHECKSUMS:
   BVLinearGradient: 34a999fda29036898a09c6a6b728b0b4189e1a44
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
+  FBAEMKit: 5de0a7aaa854eec69bb5be20795952a63d38a5f6
   FBLazyVector: fa8275d5086566e22a26ddc385ab5772e7f9b1bd
   FBReactNativeSpec: f10aa1c5453fce214c025a6509e66012cb7e446a
-  FBSDKCoreKit: 4afd6ff53d8133a433dbcda44451c9498f8c6ce4
-  FBSDKLoginKit: 7181765f2524d7ebf82d9629066c8e6caafc99d0
-  FBSDKShareKit: 0c0d51b3af47075a85ed9bea0e28b2fc70e3594b
+  FBSDKCoreKit: bf655f808b040ed66a72b9922911b39d703e64f4
+  FBSDKCoreKit_Basics: 73ebe3a27eb688ac5b5aa7e99f68992993042115
+  FBSDKLoginKit: 2e76831ef08d356b8f9150ea51cce865074ea304
+  FBSDKShareKit: 1c8c3000880382ae005fe4a4e7eae9932db1a837
   Firebase: 5f8193dff4b5b7c5d5ef72ae54bb76c08e2b841d
   FirebaseCore: 5743c5785c074a794d35f2fff7ecc254a91e08b1
   FirebaseCoreDiagnostics: 92e07a649aeb66352b319d43bdd2ee3942af84cb
@@ -725,7 +737,7 @@ SPEC CHECKSUMS:
   react-native-cameraroll: 60ac50a5209777cbccfe8d7a62d0743a9da87060
   react-native-compressor: 17b13a98c06ffa9262182a78be27099b443fd162
   react-native-document-picker: 644b4c5658f9d781a2ac4c4625ef414c8f797083
-  react-native-fbsdk: 8e92c7a334fd8d9c2b5d8b8fcd7ae2c314161099
+  react-native-fbsdk-next: 064b3b1ba2d5748c49c3d9f2a91414921cf06759
   react-native-fetch-blob: 0cbdf9764c75d9438c162427395f4bc35a857d5a
   react-native-geolocation: 205c5f619aea7bd54067b7b51e0781cae2f37151
   react-native-google-maps: 0a989abda71059db2caa98b9dacca7a8f38a47d0
@@ -759,10 +771,10 @@ SPEC CHECKSUMS:
   RNShare: a5dc3b9c53ddc73e155b8cd9a94c70c91913c43c
   RNSound: 1081cf2576b404ca804daf4934bb644cb506ff98
   RNSVG: d7d7bc8229af3842c9cfc3a723c815a52cdd1105
-  servisofts-component: a59e8def726228e5c57e249211b2f8a22913bc9c
+  servisofts-component: 31e74f2829f862dcaeaed7e38bdcdacbcfeb1847
   servisofts-socket: 5997e69ddd8c542bbe14d8a2eb42eb2900ea474d
   Yoga: d1fc3575b8b68891ff5ef3c276daa855e841eb32
 
-PODFILE CHECKSUM: 2ed7fae8e8f79b3c4e2bc25a9c1d4425b92c5da2
+PODFILE CHECKSUM: aaa54fd1af9a7b505da02c4c6a578ead6afc1bad
 
 COCOAPODS: 1.11.3
