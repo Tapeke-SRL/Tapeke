@@ -1,6 +1,6 @@
 {
   "name": "tapeke_app",
-  "version": "4.1.17",
+  "version": "4.1.18",
   "description": "tapeke_app",
   "scripts": {
     "start": "react-native start",

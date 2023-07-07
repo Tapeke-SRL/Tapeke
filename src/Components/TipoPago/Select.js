@@ -33,8 +33,8 @@ class TipoPago extends Component {
             var card = this.state.obj_tarjeta;
             data.tageta = {
                 "expiration_year": card.ano,
-                "cvv_code": parseInt(card.codigo_seguridad),
-                "credit_card_number": parseInt(card.numero_tarjeta),
+                "cvv_code": card.codigo_seguridad + "",
+                "credit_card_number": card.numero_tarjeta + "",
                 "card_holder_name": card.nombre,
                 "encryption": false,
                 "expiration_month": card.mes,
