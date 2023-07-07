@@ -133,8 +133,8 @@ android {
         applicationId "com.tapeke_app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 40115
-        versionName "4.1.15"
+        versionCode 40117
+        versionName "4.1.17"
     }
     splits {
         abi {
